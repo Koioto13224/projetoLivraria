@@ -6,17 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
-public class Endereco {
+public class Pedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @NotBlank
-    private String cep;
-    @NotBlank
-    private String rua;
-    @NotBlank
-    private String logradouro;
-    @NotBlank
-    private String cidade;
+    private Clientes clientes;
+    private List<Livros> itens;
 }

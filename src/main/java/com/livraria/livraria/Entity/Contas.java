@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Conta {
+public class Contas {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

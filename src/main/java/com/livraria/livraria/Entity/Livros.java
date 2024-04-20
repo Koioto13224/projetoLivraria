@@ -15,11 +15,89 @@ public class Livros {
     @NotBlank
     private String editora;
     @NotBlank
-    private String capa;
+    private byte[] capa;
     @NotBlank
     private Double preco;
     @NotBlank
     private boolean destaque;
     @NotBlank
     private String sumario;
+
+    public Livros() {
+    }
+
+    public Livros(Long id, String titulo, String autor, String editora, byte[] capa, Double preco, boolean destaque, String sumario) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.capa = capa;
+        this.preco = preco;
+        this.destaque = destaque;
+        this.sumario = sumario;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getEditora() {
+        return editora;
+    }
+
+    public void setEditora(String editora) {
+        this.editora = editora;
+    }
+
+    public byte[] getCapa() {
+        return capa;
+    }
+
+    public void setCapa(byte[] capa) {
+        this.capa = capa;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public void setSumario(String sumario) {
+        this.sumario = sumario;
+    }
 }
