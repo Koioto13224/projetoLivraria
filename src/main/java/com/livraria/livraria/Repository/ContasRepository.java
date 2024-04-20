@@ -1,9 +1,9 @@
 package com.livraria.livraria.Repository;
 
-import com.livraria.livraria.Entity.Clientes;
+import com.livraria.livraria.Entity.Contas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Clientes,Long> {
+public interface ContasRepository extends JpaRepository<Contas, Long> {
 }

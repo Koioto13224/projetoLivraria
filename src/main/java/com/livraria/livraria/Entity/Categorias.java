@@ -11,4 +11,14 @@ public class Categorias {
     private Long id;
     @NotBlank
     private String nome;
+    @NotBlank
+    private boolean ativo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }

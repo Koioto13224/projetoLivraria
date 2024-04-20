@@ -1,9 +1,9 @@
 package com.livraria.livraria.Repository;
 
-import com.livraria.livraria.Entity.Enderecos;
+import com.livraria.livraria.Entity.Clientes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Enderecos,Long> {
+public interface ClientesRepository extends JpaRepository<Clientes,Long> {
 }
