@@ -16,8 +16,7 @@ public class Funcionarios extends Pessoas {
     @NotBlank
     private Date dataDeAdmissao;
 
-    public Funcionarios(Date dataNascimento, String nome) {
-        super(dataNascimento, nome);
+    public Funcionarios() {
     }
 
     public Funcionarios(Date dataNascimento, String nome, Date dataDeAdmissao, Long id) {

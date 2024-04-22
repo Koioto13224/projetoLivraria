@@ -1,12 +1,10 @@
 package com.livraria.livraria.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Clientes extends Pessoas {
@@ -14,15 +12,16 @@ public class Clientes extends Pessoas {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @NotBlank
-    private Enderecos enderecos;
+    @OneToMany
+    private List<Enderecos> enderecos;
     @NotBlank
+    @OneToOne
     private Contas contas;
 
-    public Clientes(Date dataNascimento, String nome) {
-        super(dataNascimento, nome);
+    public Clientes() {
     }
 
-    public Clientes(Date dataNascimento, String nome, Contas contas, Enderecos enderecos, Long id) {
+    public Clientes(Date dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id) {
         super(dataNascimento, nome);
         this.contas = contas;
         this.enderecos = enderecos;
@@ -37,11 +36,11 @@ public class Clientes extends Pessoas {
         this.id = id;
     }
 
-    public Enderecos getEndereco() {
+    public List<Enderecos> getEndereco() {
         return enderecos;
     }
 
-    public void setEndereco(Enderecos enderecos) {
+    public void setEndereco(List<Enderecos> enderecos) {
         this.enderecos = enderecos;
     }
 

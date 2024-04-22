@@ -1,10 +1,9 @@
 package com.livraria.livraria.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.util.List;
 
 @Entity
 public class Enderecos {
@@ -19,9 +18,18 @@ public class Enderecos {
     private String logradouro;
     @NotBlank
     private String cidade;
+    @OneToMany
+    private List<Clientes> clientes;
 
 
 
+    public List<Clientes> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Clientes> clientes) {
+        this.clientes = clientes;
+    }
 
     public String getCep() {
         return cep;

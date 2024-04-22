@@ -15,8 +15,6 @@ public class Livros {
     @NotBlank
     private String editora;
     @NotBlank
-    private byte[] capa;
-    @NotBlank
     private Double preco;
     @NotBlank
     private boolean destaque;
@@ -26,12 +24,11 @@ public class Livros {
     public Livros() {
     }
 
-    public Livros(Long id, String titulo, String autor, String editora, byte[] capa, Double preco, boolean destaque, String sumario) {
+    public Livros(Long id, String titulo, String autor, String editora, Double preco, boolean destaque, String sumario) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
-        this.capa = capa;
         this.preco = preco;
         this.destaque = destaque;
         this.sumario = sumario;
@@ -67,14 +64,6 @@ public class Livros {
 
     public void setEditora(String editora) {
         this.editora = editora;
-    }
-
-    public byte[] getCapa() {
-        return capa;
-    }
-
-    public void setCapa(byte[] capa) {
-        this.capa = capa;
     }
 
     public Double getPreco() {

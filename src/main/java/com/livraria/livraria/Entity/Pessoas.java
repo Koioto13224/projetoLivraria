@@ -15,6 +15,9 @@ public class Pessoas {
     @NotBlank
     private Date dataNascimento;
 
+    public Pessoas() {
+    }
+
     public Pessoas(Date dataNascimento, String nome) {
         this.dataNascimento = dataNascimento;
         this.nome = nome;
