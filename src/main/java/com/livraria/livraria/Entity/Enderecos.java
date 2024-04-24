@@ -21,7 +21,14 @@ public class Enderecos {
     @OneToMany
     private List<Clientes> clientes;
 
-
+    public Enderecos(Long id, String cep, String rua, String logradouro, String cidade, List<Clientes> clientes) {
+        this.id = id;
+        this.cep = cep;
+        this.rua = rua;
+        this.logradouro = logradouro;
+        this.cidade = cidade;
+        this.clientes = clientes;
+    }
 
     public List<Clientes> getClientes() {
         return clientes;

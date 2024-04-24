@@ -15,4 +15,34 @@ public class Pedidos {
     private Clientes clientes;
     @OneToMany
     private List<Livros> itens;
+
+    public Pedidos(Long id, Clientes clientes, List<Livros> itens) {
+        this.id = id;
+        this.clientes = clientes;
+        this.itens = itens;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Clientes getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
+    }
+
+    public List<Livros> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Livros> itens) {
+        this.itens = itens;
+    }
 }
