@@ -17,7 +17,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrarClienteAndEdit")
-    public void cadastrarCorrente(@Valid @RequestBody Clientes cliente) {
+    public void cadastrarCliente(@Valid @RequestBody Clientes cliente) {
         clienteService.cadastrarCliente(cliente);
     }
 
@@ -28,13 +28,13 @@ public class ClienteController {
     }*/
 
     @DeleteMapping("/deletarCliente/{id}")
-    public void deletarPoupanca(@PathVariable long id) {
+    public void deletarCliente(@PathVariable long id) {
         clienteService.deletarCliente(id);
     }
-    @DeleteMapping("/{id}")
-    public void deletarCliente(@PathVariable Long id) {
-        clienteService.deletarCliente(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public void deletarCliente(@PathVariable Long id) {
+//        clienteService.deletarCliente(id);
+//    }
 
     @PutMapping("/editar")
     public Clientes editar(@RequestBody Clientes clientes) {
