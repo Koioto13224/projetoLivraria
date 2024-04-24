@@ -41,6 +41,13 @@ public class ClientesServices {
        } else {
            //notificacao caso nao for encontrado
            throw new RuntimeException("cliente não encontrado com o ID" + id);
-       }*/
+       }
 
+    public void inativarCliente(Clientes clientes) {
+        clientes.setAtivo(false);
+    }
+
+    public void ativarCliente(Clientes clientes) {
+        clientes.setAtivo(true);
+    }*/
 }

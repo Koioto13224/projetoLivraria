@@ -17,7 +17,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrarClienteAndEdit")
-    public void cadastrarCorrente(@Valid @RequestBody Clientes cliente) {
+    public void cadastrarCliente(@Valid @RequestBody Clientes cliente) {
         clienteService.cadastrarCliente(cliente);
     }
 
@@ -28,9 +28,10 @@ public class ClienteController {
     }*/
 
     @DeleteMapping("/deletarCliente/{id}")
-    public void deletarPoupanca(@PathVariable long id) {
+    public void deletarCliente(@PathVariable long id) {
         clienteService.deletarCliente(id);
     }
+
     @DeleteMapping("/{id}")
     public void deletarCliente(@PathVariable Long id) {
         clienteService.deletarCliente(id);
@@ -48,6 +49,15 @@ public class ClienteController {
 
     /*@PatchMapping("/{id}/inativar")
     public void inativar(@PathVariable Long id) {
-        clienteService.inativar(id);*/
+        clienteService.inativar(id);
+
+    @PutMapping("/inativar")
+    public void inativarCliente(@RequestBody Clientes clientes) {
+        clienteService.inativarCliente(clientes);
+    }
+    @PutMapping("/ativar")
+    public void ativarCliente(@RequestBody Clientes clientes) {
+        clienteService.ativarCliente(clientes);
+    }*/
 
 }
