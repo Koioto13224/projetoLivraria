@@ -3,6 +3,7 @@ package com.livraria.livraria.Entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Livros {
@@ -14,9 +15,9 @@ public class Livros {
     private String autor;
     @NotBlank
     private String editora;
-    @NotBlank
+    @NotNull
     private Double preco;
-    @NotBlank
+    @NotNull
     private boolean destaque;
     @NotBlank
     private String sumario;
