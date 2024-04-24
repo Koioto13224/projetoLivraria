@@ -32,7 +32,7 @@ public class ClientesServices {
         List<Clientes> Cls = clientesRepository.findAll();
         return Cls;
     }
-   /*public void inativar(Long id) {
+   public void inativar(Long id) {
        Optional<Clientes> optionalClientes = clientesRepository.findById(id);
        if (optionalClientes.isPresent()) {
            Clientes clientes = optionalClientes.get();
@@ -41,6 +41,6 @@ public class ClientesServices {
        } else {
            //notificacao caso nao for encontrado
            throw new RuntimeException("cliente não encontrado com o ID" + id);
-       }*/
-
+       }
+   }
 }

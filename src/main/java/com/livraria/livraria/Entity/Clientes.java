@@ -3,6 +3,7 @@ package com.livraria.livraria.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Clientes extends Pessoas {
     public Clientes() {
     }
 
-    public Clientes(Date dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id, boolean ativo) {
+    public Clientes(LocalDate dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id, boolean ativo) {
         super(dataNascimento, nome);
         this.contas = contas;
         this.enderecos = enderecos;

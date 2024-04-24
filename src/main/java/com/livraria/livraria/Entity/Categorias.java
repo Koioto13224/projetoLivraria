@@ -15,11 +15,27 @@ public class Categorias {
 
     private boolean ativo;
 
+    public Categorias() {
+    }
+
+    public Categorias(String nome, boolean ativo) {
+        this.nome = nome;
+        this.ativo = ativo;
+    }
+
     public Long getId() {
         return id;
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }
