@@ -26,7 +26,7 @@ public class   LivrosController {
         livrosServices.cadastrarLivros(livros);
     }
 
-    @GetMapping("/buscarLivro/{id}")
+    @GetMapping("/buscar/{id}")
     public Optional<Livros> buscarLivro(@PathVariable @Valid Long id){
        return livrosServices.buscarLivro(id);
     }
@@ -36,8 +36,4 @@ public class   LivrosController {
         return livrosServices.editar(livros);
     }
 
-    @PutMapping("/ativar/{id}")
-    public void ativar(@RequestBody @PathVariable Livros livros){
-        livrosServices.ativarLivro(livros);
-    }
 }

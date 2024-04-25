@@ -1,10 +1,14 @@
 package com.livraria.livraria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 @Entity
 public class Livros {
@@ -12,37 +16,60 @@ public class Livros {
     private Long id;
     @NotBlank
     private String titulo;
-    @NotBlank
-    private String autor;
-    @NotBlank
-    private String editora;
+    @NotNull
+    @OneToOne
+    private Autores autores;
+    @NotNull
+    @OneToOne
+    @JsonIgnore
+    private Editoras editoras;
+    @NotNull
+    @OneToOne
+    @JsonIgnore
+    private Categorias categorias;
     @NotNull
     private Double preco;
     @NotNull
     private boolean destaque;
     @NotBlank
     private String sumario;
-    private boolean estoque;
+
     public Livros() {
     }
 
-    public Livros(Long id, String titulo, String autor, String editora, Double preco, boolean destaque, String sumario,boolean estoque) {
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
-        this.editora = editora;
-        this.preco = preco;
+    public Livros(Autores autores, Categorias categorias, boolean destaque,Editoras editoras, Long id, Double preco, String sumario, String titulo) {
+        this.autores = autores;
+        this.categorias = categorias;
         this.destaque = destaque;
+        this.editoras = editoras;
+        this.id = id;
+        this.preco = preco;
         this.sumario = sumario;
-        this.estoque = estoque;
+        this.titulo = titulo;
     }
 
-    public boolean isEstoque() {
-        return estoque;
+    public Autores getAutores() {
+        return autores;
     }
 
-    public void setEstoque(boolean estoque) {
-        this.estoque = estoque;
+    public void setAutores(Autores autores) {
+        this.autores = autores;
+    }
+
+    public Categorias getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Categorias categorias) {
+        this.categorias = categorias;
+    }
+
+    public Editoras getEditoras() {
+        return editoras;
+    }
+
+    public void setEditoras(Editoras editoras) {
+        this.editoras = editoras;
     }
 
     public Long getId() {
@@ -59,22 +86,6 @@ public class Livros {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditora() {
-        return editora;
-    }
-
-    public void setEditora(String editora) {
-        this.editora = editora;
     }
 
     public Double getPreco() {

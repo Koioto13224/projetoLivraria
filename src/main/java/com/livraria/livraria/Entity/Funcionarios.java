@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Funcionarios extends Pessoas {
@@ -15,15 +14,14 @@ public class Funcionarios extends Pessoas {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @NotBlank
-    private Date dataDeAdmissao;
+    private LocalDate dataDeAdmissao;
 
     public Funcionarios() {
     }
 
-    public Funcionarios(LocalDate dataNascimento, String nome, Date dataDeAdmissao, Long id) {
+    public Funcionarios(LocalDate dataNascimento, String nome, LocalDate dataDeAdmissao) {
         super(dataNascimento, nome);
         this.dataDeAdmissao = dataDeAdmissao;
-        this.id = id;
     }
 
     public Long getId() {
@@ -34,11 +32,11 @@ public class Funcionarios extends Pessoas {
         this.id = id;
     }
 
-    public Date getDataDeAdmissao() {
+    public LocalDate getDataDeAdmissao() {
         return dataDeAdmissao;
     }
 
-    public void setDataDeAdmissao(Date dataDeAdmissao) {
+    public void setDataDeAdmissao(LocalDate dataDeAdmissao) {
         this.dataDeAdmissao = dataDeAdmissao;
     }
 }

@@ -35,7 +35,4 @@ public class LivrosServices {
         return livrosRepository.save(livros);
     }
 
-    public void ativarLivro(Livros livros){
-       livros.setEstoque(true);
-    }
 }

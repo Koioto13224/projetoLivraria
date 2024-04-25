@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class CategoriasServices {
 
+    private Categorias categorias;
     @Autowired
     CategoriasRepository categoriasRepository;
 
@@ -19,6 +20,10 @@ public class CategoriasServices {
 
     public void criarCategorias(Categorias categorias){
         categoriasRepository.save(categorias);
+    }
+
+    public void ativar(boolean ativo){
+        categorias.setAtivo(ativo);
     }
 
 }
