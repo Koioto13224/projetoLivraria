@@ -46,8 +46,8 @@ public class ClienteController {
         return clienteService.listarCliente();
     }
 
-    /*@PatchMapping("/{id}/inativar")
+    @PutMapping("/{id}/inativar")
     public void inativar(@PathVariable Long id) {
-        clienteService.inativar(id);*/
-
+        clienteService.inativar(id);
+    }
 }
