@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Pessoas {
@@ -13,21 +14,19 @@ public class Pessoas {
     @NotBlank
     private String nome;
     @NotBlank
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     public Pessoas() {
     }
 
-    public Pessoas(Date dataNascimento, String nome) {
-        this.dataNascimento = dataNascimento;
-        this.nome = nome;
+    public Pessoas(LocalDate dataNascimento, String nome) {
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

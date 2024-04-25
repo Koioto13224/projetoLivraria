@@ -2,6 +2,7 @@ package com.livraria.livraria.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -21,11 +22,11 @@ public class Livros {
     private boolean destaque;
     @NotBlank
     private String sumario;
-
+    private boolean estoque;
     public Livros() {
     }
 
-    public Livros(Long id, String titulo, String autor, String editora, Double preco, boolean destaque, String sumario) {
+    public Livros(Long id, String titulo, String autor, String editora, Double preco, boolean destaque, String sumario,boolean estoque) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -33,6 +34,15 @@ public class Livros {
         this.preco = preco;
         this.destaque = destaque;
         this.sumario = sumario;
+        this.estoque = estoque;
+    }
+
+    public boolean isEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(boolean estoque) {
+        this.estoque = estoque;
     }
 
     public Long getId() {

@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,7 @@ public class Funcionarios extends Pessoas {
     public Funcionarios() {
     }
 
-    public Funcionarios(Date dataNascimento, String nome, Date dataDeAdmissao, Long id) {
+    public Funcionarios(LocalDate dataNascimento, String nome, Date dataDeAdmissao, Long id) {
         super(dataNascimento, nome);
         this.dataDeAdmissao = dataDeAdmissao;
         this.id = id;
