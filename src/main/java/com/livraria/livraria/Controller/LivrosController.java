@@ -1,6 +1,5 @@
 package com.livraria.livraria.Controller;
 
-import com.livraria.livraria.Entity.Clientes;
 import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Services.LivrosServices;
 import jakarta.validation.Valid;
@@ -11,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/")
 public class   LivrosController {
 
     @Autowired
@@ -28,12 +28,21 @@ public class   LivrosController {
 
     @GetMapping("/buscar/{id}")
     public Optional<Livros> buscarLivro(@PathVariable @Valid Long id){
-       return livrosServices.buscarLivro(id);
+       return livrosServices.buscarPorId(id);
+    }
+
+    @GetMapping("/buscar/{titulo}")
+    public Optional<Livros> buscarLivro(@PathVariable @Valid String titulo){
+        return livrosServices.buscarPorTitulo(titulo);
     }
 
     @PutMapping("/editarLivro")
     public Livros editar(@RequestBody Livros livros) {
         return livrosServices.editar(livros);
+    }
+
+    public List<Livros> destaque(){
+        return livrosServices.destaque();
     }
 
 }

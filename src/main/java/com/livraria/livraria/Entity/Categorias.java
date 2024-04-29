@@ -15,16 +15,14 @@ public class Categorias {
     private String nome;
     @NotNull
     private boolean ativo;
-    @NotNull
     @OneToMany
     private List<Livros> livros;
 
     public Categorias() {
     }
 
-    public Categorias(boolean ativo, List<Livros> livros, String nome) {
+    public Categorias(boolean ativo,String nome) {
         this.ativo = ativo;
-        this.livros = livros;
         this.nome = nome;
     }
     public Long getId() {
