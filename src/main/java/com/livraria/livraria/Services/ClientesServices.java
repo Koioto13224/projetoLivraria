@@ -32,22 +32,16 @@ public class ClientesServices {
         List<Clientes> Cls = clientesRepository.findAll();
         return Cls;
     }
-   /*public void inativar(Long id) {
-       Optional<Clientes> optionalClientes = clientesRepository.findById(id);
-       if (optionalClientes.isPresent()) {
-           Clientes clientes = optionalClientes.get();
-           clientes.setAtivo(false);
-           clientesRepository.save(clientes);
-       } else {
-           //notificacao caso nao for encontrado
-           throw new RuntimeException("cliente não encontrado com o ID" + id);
-       }
 
-    public void inativarCliente(Clientes clientes) {
-        clientes.setAtivo(false);
-    }
-
-    public void ativarCliente(Clientes clientes) {
-        clientes.setAtivo(true);
-    }*/
+//   public void inativar(Long id) {
+//       Optional<Clientes> optionalClientes = clientesRepository.findById(id);
+//       if (optionalClientes.isPresent()) {
+//           Clientes clientes = optionalClientes.get();
+//           clientes.setAtivo(false);
+//           clientesRepository.save(clientes);
+//       } else {
+//           //notificacao caso nao for encontrado
+//           throw new RuntimeException("cliente não encontrado com o ID" + id);
+//       }
+//   }
 }

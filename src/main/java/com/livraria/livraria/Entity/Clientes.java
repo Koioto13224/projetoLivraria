@@ -3,6 +3,7 @@ package com.livraria.livraria.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,17 +19,15 @@ public class Clientes extends Pessoas {
     @OneToOne
     private Contas contas;
 
-    private boolean ativo;
 
     public Clientes() {
     }
 
-    public Clientes(Date dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id, boolean ativo) {
+    public Clientes(LocalDate dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id) {
         super(dataNascimento, nome);
         this.contas = contas;
         this.enderecos = enderecos;
         this.id = id;
-        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -55,11 +54,5 @@ public class Clientes extends Pessoas {
         this.contas = contas;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
 }

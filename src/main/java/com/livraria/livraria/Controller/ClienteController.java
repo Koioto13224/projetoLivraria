@@ -21,21 +21,19 @@ public class ClienteController {
         clienteService.cadastrarCliente(cliente);
     }
 
-    /*@GetMapping("/pegarCliente")
+    @GetMapping("/pegarCliente")
     public List<Clientes> getALLCliente() {
-        List<Clientes> cl = clienteService.listarCliente();
-        return cl;
-    }*/
+        return clienteService.listarCliente();
+    }
 
     @DeleteMapping("/deletarCliente/{id}")
     public void deletarCliente(@PathVariable long id) {
         clienteService.deletarCliente(id);
     }
-
-    @DeleteMapping("/{id}")
-    public void deletarCliente(@PathVariable Long id) {
-        clienteService.deletarCliente(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public void deletarCliente(@PathVariable Long id) {
+//        clienteService.deletarCliente(id);
+//    }
 
     @PutMapping("/editar")
     public Clientes editar(@RequestBody Clientes clientes) {
@@ -47,17 +45,8 @@ public class ClienteController {
         return clienteService.listarCliente();
     }
 
-    /*@PatchMapping("/{id}/inativar")
-    public void inativar(@PathVariable Long id) {
-        clienteService.inativar(id);
-
-    @PutMapping("/inativar")
-    public void inativarCliente(@RequestBody Clientes clientes) {
-        clienteService.inativarCliente(clientes);
-    }
-    @PutMapping("/ativar")
-    public void ativarCliente(@RequestBody Clientes clientes) {
-        clienteService.ativarCliente(clientes);
-    }*/
-
+//    @PutMapping("/{id}/inativar")
+//    public void inativar(@PathVariable Long id) {
+//        clienteService.inativar(id);
+//    }
 }

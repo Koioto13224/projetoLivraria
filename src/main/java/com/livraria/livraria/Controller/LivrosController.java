@@ -4,14 +4,13 @@ import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Services.LivrosServices;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/")
 public class   LivrosController {
 
     @Autowired
@@ -26,4 +25,24 @@ public class   LivrosController {
     public void adicionarLivro(@RequestBody @Valid Livros livros){
         livrosServices.cadastrarLivros(livros);
     }
+
+    @GetMapping("/buscar/{id}")
+    public Optional<Livros> buscarLivro(@PathVariable @Valid Long id){
+       return livrosServices.buscarPorId(id);
+    }
+
+    @GetMapping("/buscar/{titulo}")
+    public Optional<Livros> buscarLivro(@PathVariable @Valid String titulo){
+        return livrosServices.buscarPorTitulo(titulo);
+    }
+
+    @PutMapping("/editarLivro")
+    public Livros editar(@RequestBody Livros livros) {
+        return livrosServices.editar(livros);
+    }
+
+    public List<Livros> destaque(){
+        return livrosServices.destaque();
+    }
+
 }
