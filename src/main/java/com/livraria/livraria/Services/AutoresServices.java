@@ -11,18 +11,14 @@ import java.util.Optional;
 
 @Service
 public class AutoresServices {
-
     @Autowired
-    AutoresRepository autoresRepository;
+     private AutoresRepository autoresRepository;
 
     Autores autores;
 
-
     public void adicionarAutor(Autores autores){
     autoresRepository.save(autores);
-
     }
-
     public List<Autores> listarTodosAutores(){
         return autoresRepository.findAll();
     }
@@ -30,7 +26,6 @@ public class AutoresServices {
     public Optional<Autores> buscarPorId(long id){
         return autoresRepository.findById(id);
     }
-
     public Autores editar(Autores autores){
         return autoresRepository.save(autores);
     }
@@ -41,6 +36,12 @@ public class AutoresServices {
 
     public void deletarAutor(Long id){
         autoresRepository.deleteById(id);
+    }
+    public void inativarAutor (Autores autores){
+        autores.setAtivo(false);
+    }
+    public void ativarAutor (Autores autores){
+        autores.setAtivo(true);
     }
 
 }

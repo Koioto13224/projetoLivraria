@@ -1,6 +1,7 @@
 package com.livraria.livraria.Services;
 
 import com.livraria.livraria.Entity.Autores;
+import com.livraria.livraria.Entity.Clientes;
 import com.livraria.livraria.Entity.Editoras;
 import com.livraria.livraria.Repository.AutoresRepository;
 import com.livraria.livraria.Repository.EditorasRepository;
@@ -14,15 +15,17 @@ import java.util.Optional;
 public class EditoresServices {
 
     @Autowired
-    EditorasRepository editorasRepository;
+    private EditorasRepository editorasRepository;
 
-    Editoras editoras;
-
-
+    public EditoresServices(EditorasRepository editorasRepository) {
+        this.editorasRepository = editorasRepository;
+    }
     public void adicionarEditora(Editoras editoras){
         editorasRepository.save(editoras);
     }
-
+    public void cadastrarEditoras(Editoras editoras) {
+        editorasRepository.save(editoras);
+    }
     public List<Editoras> listarTodosEditoras(){
         return editorasRepository.findAll();
     }
@@ -41,5 +44,8 @@ public class EditoresServices {
 
     public void deletarEditora(Long id){
         editorasRepository.deleteById(id);
+    }
+    public Editoras atualizarLivro(Editoras Editoras) {
+        return editorasRepository.save(Editoras);
     }
 }

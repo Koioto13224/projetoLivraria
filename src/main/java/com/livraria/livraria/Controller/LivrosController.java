@@ -1,5 +1,6 @@
 package com.livraria.livraria.Controller;
 
+import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Services.LivrosServices;
 import jakarta.validation.Valid;
@@ -43,6 +44,10 @@ public class   LivrosController {
 
     public List<Livros> destaque(){
         return livrosServices.destaque();
+    }
+    @GetMapping("/buscarCategoria/{categorias}")
+    public Optional<Livros> buscarCategoria(@PathVariable Categorias categorias){
+        return livrosServices.buscarPorCategoria(categorias);
     }
 
 }

@@ -23,12 +23,10 @@ public class AutoresController {
     public Optional<Autores> buscarPorId(Long id){
         return services.buscarPorId(id);
     }
-
     @GetMapping("/buscarPorNome")
     public Optional<Autores> buscarPorNome(String nome){
         return services.buscarPorNome(nome);
     }
-
     @PostMapping("/adicionarAutor")
     public void adicionarAutor(@RequestBody @Valid Autores autores){
         services.adicionarAutor(autores);

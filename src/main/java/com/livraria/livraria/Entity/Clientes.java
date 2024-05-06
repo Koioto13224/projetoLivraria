@@ -18,16 +18,18 @@ public class Clientes extends Pessoas {
     @NotBlank
     @OneToOne
     private Contas contas;
+    private boolean ativo;
 
 
     public Clientes() {
     }
 
-    public Clientes(LocalDate dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id) {
+    public Clientes(LocalDate dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id,boolean ativo) {
         super(dataNascimento, nome);
         this.contas = contas;
         this.enderecos = enderecos;
         this.id = id;
+        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -54,5 +56,14 @@ public class Clientes extends Pessoas {
         this.contas = contas;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
 
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 }
+
+
+

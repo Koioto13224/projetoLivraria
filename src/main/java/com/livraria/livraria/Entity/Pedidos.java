@@ -15,8 +15,9 @@ public class Pedidos {
     private Clientes clientes;
     @OneToMany
     private List<Livros> itens;
+    private boolean ativo;
 
-    public Pedidos(Long id, Clientes clientes, List<Livros> itens) {
+    public Pedidos(Long id, Clientes clientes, List<Livros> itens, boolean ativo) {
         this.id = id;
         this.clientes = clientes;
         this.itens = itens;
@@ -44,5 +45,13 @@ public class Pedidos {
 
     public void setItens(List<Livros> itens) {
         this.itens = itens;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
     }
 }
