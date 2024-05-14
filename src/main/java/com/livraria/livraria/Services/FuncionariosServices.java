@@ -15,23 +15,28 @@ public class FuncionariosServices {
     public FuncionariosServices(FuncionariosRepository funcionariosRepository) {
         this.funcionariosRepository = funcionariosRepository;
     }
+
     public void cadastrarFuncionarios(Funcionarios funcionarios) {
         funcionariosRepository.save(funcionarios);
     }
-    public Optional<Funcionarios> buscarFuncionarios (long id){
+
+    public Optional<Funcionarios> buscarFuncionarios(long id) {
         return funcionariosRepository.findById(id);
     }
-    public void deletarFuncionarios(Long id){
+
+    public void deletarFuncionarios(Long id) {
         funcionariosRepository.deleteById(id);
     }
-    public Funcionarios editar(Funcionarios funcionarios){
+
+    public Funcionarios editarFuncionarios(Funcionarios funcionarios) {
         return funcionariosRepository.save(funcionarios);
     }
-    public List<Funcionarios> listarTodosFuncionarios(){
-        List<Funcionarios> FU = funcionariosRepository.findAll();
-        return FU;
+
+    public List<Funcionarios> listarTodosFuncionarios() {
+        return funcionariosRepository.findAll();
     }
-    public Funcionarios atualizarFuncionarios (Funcionarios funcionarios) {
+
+    public Funcionarios atualizarFuncionarios(Funcionarios funcionarios) {
         return funcionariosRepository.save(funcionarios);
     }
 

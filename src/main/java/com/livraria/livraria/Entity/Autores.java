@@ -13,10 +13,9 @@ public class Autores {
     private Long id;
     @NotBlank
     private String nome;
-    @NotNull
     @OneToMany
     private List<Livros> livros;
-    private boolean ativo;
+    private boolean ativo ;
 
     public Autores() {
     }
@@ -26,6 +25,14 @@ public class Autores {
         this.nome = nome;
         this.livros = livros;
         this.ativo = ativo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Livros> getLivros() {

@@ -2,6 +2,7 @@ package com.livraria.livraria.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -12,24 +13,24 @@ public class Clientes extends Pessoas {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Enderecos enderecos;
     @NotBlank
-    @OneToMany
-    private List<Enderecos> enderecos;
+    private String email;
     @NotBlank
-    @OneToOne
-    private Contas contas;
+    private String senha;
     private boolean ativo;
 
 
     public Clientes() {
     }
 
-    public Clientes(LocalDate dataNascimento, String nome, Contas contas, List<Enderecos> enderecos, Long id,boolean ativo) {
+    public Clientes(LocalDate dataNascimento, String nome, Enderecos enderecos,String email, String senha) {
         super(dataNascimento, nome);
-        this.contas = contas;
         this.enderecos = enderecos;
-        this.id = id;
-        this.ativo = ativo;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Long getId() {
@@ -40,20 +41,12 @@ public class Clientes extends Pessoas {
         this.id = id;
     }
 
-    public List<Enderecos> getEndereco() {
+    public Enderecos getEndereco() {
         return enderecos;
     }
 
-    public void setEndereco(List<Enderecos> enderecos) {
+    public void setEndereco(Enderecos enderecos) {
         this.enderecos = enderecos;
-    }
-
-    public Contas getConta() {
-        return contas;
-    }
-
-    public void setConta(Contas contas) {
-        this.contas = contas;
     }
 
     public boolean isAtivo() {
@@ -62,6 +55,22 @@ public class Clientes extends Pessoas {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
 

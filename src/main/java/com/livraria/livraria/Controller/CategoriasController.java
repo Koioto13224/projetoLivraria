@@ -18,7 +18,7 @@ public class CategoriasController {
 
     @GetMapping("/listarCategorias")
     public List<Categorias> listarCategorias() {
-            return categoriasServices.listarCategoias();
+            return categoriasServices.listarCategorias();
     }
 
     @PostMapping("/criarCategorias")
@@ -26,8 +26,8 @@ public class CategoriasController {
         categoriasServices.criarCategorias(categorias);
     }
 
-    @PutMapping("/ativar/{ativo}")
-    public void alterarAtivacaoCategoria(@RequestBody @Valid boolean ativo){
-        categoriasServices.ativar(ativo);
-    }
+    /*@PutMapping("/ativar/{ativo}")
+    public void alterarAtivacaoCategoria(@ @Valid boolean ativo){
+        categoriasServices.ativarCategorias(ativo);
+    }*/
 }
