@@ -2,6 +2,7 @@ package com.livraria.livraria.Services;
 
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Clientes;
+import com.livraria.livraria.Entity.Enderecos;
 import com.livraria.livraria.Repository.CategoriasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,7 @@ public class CategoriasServices {
 
         return categoriasRepository.save(categorias);
     }
-
+    public Categorias AtualizarCategorias(Categorias categorias) {
+        return categoriasRepository.save(categorias);
+    }
 }

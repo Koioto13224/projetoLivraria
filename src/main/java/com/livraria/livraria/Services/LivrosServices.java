@@ -9,6 +9,7 @@ import com.livraria.livraria.Repository.CategoriasRepository;
 import com.livraria.livraria.Repository.EditorasRepository;
 import com.livraria.livraria.Repository.LivrosRepository;
 import com.livraria.livraria.dto.LivrosDTO;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,26 +27,32 @@ public class LivrosServices {
     EditorasRepository editorasRepository;
     @Autowired
     CategoriasRepository categoriasRepository;
+
     Livros livros;
+
     public LivrosServices(LivrosRepository livrosRepository) {
         this.livrosRepository = livrosRepository;
     }
     /*public void cadastrarLivros(Livros livros) {
         livrosRepository.save(livros);
     }*/
-    public void cadastrarLivros(LivrosDTO livrosDTO) {
+    public void cadastrarLivros( LivrosDTO livrosDTO) {
         Autores autores = autoresRepository.findById(livrosDTO.getIdautor())
                 .orElseThrow(() -> new IllegalArgumentException("Autor não encontrado com o ID: " + livrosDTO.getIdautor()));
 
         Editoras editoras = editorasRepository.findById(livrosDTO.getIdeditora())
                 .orElseThrow(() -> new IllegalArgumentException("Editora não encontrada com o ID: " + livrosDTO.getIdeditora()));
 
-        Categorias categorias = categoriasRepository.findById(livrosDTO.getIdeditora()).orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com ID:" + livrosDTO.getIdeditora()));
+        Categorias categorias = categoriasRepository.findById(livrosDTO.getIdcategorias()).orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com ID:" + livrosDTO.getIdeditora()));
 
         Livros livros = new Livros();
         livros.setAutores(autores);
         livros.setEditoras(editoras);
         livros.setCategorias(categorias);
+        livros.setTitulo(livrosDTO.getTitulo());
+        livros.setPreco(livrosDTO.getPreco());
+        livros.setEstoque(livrosDTO.getEstoque());
+        livros.setSumario(livrosDTO.getSumario());
         livrosRepository.save(livros);
     }
 
@@ -69,13 +76,10 @@ public class LivrosServices {
     public Optional<Livros> buscarPorCategoria(Categorias categorias) {
         return livrosRepository.findByCategorias(categorias);
     }
-
-    public List<Livros> destaque() {
-        if (livros.isDestaques() == true) {
-            return livrosRepository.findAll();
-        }
-        throw new RuntimeException("Nenhum livro encontrado");
-    }
+//mexer dps
+//    public List<Livros> destaque() {
+//            return livrosRepository.findByDestaque();
+//    }
 
     public Livros atualizarLivros(Livros livros) {
         return livrosRepository.save(livros);

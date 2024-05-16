@@ -40,8 +40,4 @@ public class EditoresServices {
     public void deletarEditora(Long id) {
         editorasRepository.deleteById(id);
     }
-
-    public Editoras atualizarLivro(Editoras Editoras) {
-        return editorasRepository.save(Editoras);
-    }
 }

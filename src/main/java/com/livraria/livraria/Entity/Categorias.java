@@ -17,7 +17,7 @@ public class Categorias {
     private String nome;
     @NotNull
     private boolean ativo;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Livros> livros;
 
     public Categorias() {

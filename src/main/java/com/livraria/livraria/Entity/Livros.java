@@ -15,13 +15,13 @@ public class Livros {
     @NotBlank
     private String titulo;
     @NotNull
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Autores autores;
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Editoras editoras;
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Categorias categorias;
     @NotNull
     private Double preco;
@@ -29,6 +29,7 @@ public class Livros {
     private boolean destaques;
     @NotBlank
     private String sumario;
+    @NotNull
     private Integer estoque;
 
 //    @OneToMany(mappedBy = "livros")

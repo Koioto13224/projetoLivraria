@@ -1,5 +1,6 @@
 package com.livraria.livraria.Controller;
 
+import com.livraria.livraria.Entity.Editoras;
 import com.livraria.livraria.Entity.Enderecos;
 import com.livraria.livraria.Entity.Funcionarios;
 import com.livraria.livraria.Services.EnderecosServices;
@@ -35,12 +36,15 @@ public class EnderecosController {
         return enderecosServices.editarEnderecos(enderecos);
     }
 
-    /*@GetMapping("/listarEnderecos")
+    @GetMapping("/listarEnderecos")
     public List<Enderecos> listarEnderecos() {
         return enderecosServices.listarTodosEnderecos();
     }
-
-    @GetMapping("/buscarPelaCidade")
+//    @PutMapping("/editarEditoras/{id}")
+//    public Enderecos atualizarEditoras(@PathVariable @Valid Enderecos enderecos) {
+//        return enderecosServices.atualizarEnderecos(enderecos);
+//    }
+    /*@GetMapping("/buscarPelaCidade")
     public Optional<Enderecos> buscarPorId(@PathVariable String cidade) {
         return enderecosServices.buscarPeloCidade(cidade);
     }*/

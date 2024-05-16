@@ -4,6 +4,10 @@ package com.livraria.livraria.dto;
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Editoras;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -17,7 +21,15 @@ public class LivrosDTO {
     private String sumario;
     private Long idcategorias;
     private Long ideditora;
+    private Integer estoque;
 
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
+    }
 
     public LivrosDTO() {
     }
@@ -86,4 +98,3 @@ public class LivrosDTO {
         this.ideditora = ideditora;
     }
 }
-

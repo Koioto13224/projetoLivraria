@@ -5,6 +5,8 @@ import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Services.LivrosServices;
 import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,10 +41,10 @@ public class LivrosController {
         return livrosServices.buscarPorTitulo(titulo);
     }
 
-    @PutMapping("/editarLivro/{id}")
+   /* @PutMapping("/editarLivro/{id}")
     public Livros editarLivros (@RequestBody @PathVariable Livros livros) {
         return livrosServices.editarLivros(livros);
-    }
+    }*/
 
     public List <Livros> destaque() {
         return livrosServices.destaque();
@@ -53,10 +55,10 @@ public class LivrosController {
         return livrosServices.buscarPorCategoria(categorias);
     }
 
-    /*@PutMapping("/atualizarLivros/{id}")
+    @PutMapping("/atualizarLivros/{id}")
     public ResponseEntity<Void> atualizarLivros(@PathVariable Long id, @RequestBody Livros livros) {
         livros.setId(id);
         livrosServices.atualizarLivros(livros);
         return new ResponseEntity<>(HttpStatus.OK);
-    }*/
+    }
 }
