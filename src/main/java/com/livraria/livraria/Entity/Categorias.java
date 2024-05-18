@@ -1,5 +1,6 @@
 package com.livraria.livraria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ public class Categorias {
     @NotBlank
     private String nome;
     @NotNull
+    @JsonProperty
     private boolean ativo;
     @NotNull
     @OneToMany
@@ -22,9 +24,8 @@ public class Categorias {
     public Categorias() {
     }
 
-    public Categorias(boolean ativo, List<Livros> livros, String nome) {
+    public Categorias(boolean ativo, String nome) {
         this.ativo = ativo;
-        this.livros = livros;
         this.nome = nome;
     }
     public Long getId() {

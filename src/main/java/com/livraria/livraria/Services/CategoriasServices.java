@@ -15,7 +15,10 @@ public class CategoriasServices {
     CategoriasRepository categoriasRepository;
 
     public List<Categorias> listarCategoias(){
-        return categoriasRepository.findAll();
+        if(categorias.isAtivo() == true){
+            return categoriasRepository.findAll();
+        }
+        throw new RuntimeException("Nenhuma categoria encontrada");
     }
 
     public void criarCategorias(Categorias categorias){
