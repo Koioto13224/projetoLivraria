@@ -1,10 +1,7 @@
 package com.livraria.livraria.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,47 +10,57 @@ import java.util.List;
 @Entity
 public class Livros {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String titulo;
     @NotNull
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Autores autores;
     @NotNull
-    @OneToOne
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     private Editoras editoras;
     @NotNull
-    @OneToOne
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     private Categorias categorias;
     @NotNull
     private Double preco;
     @NotNull
-    private boolean destaque;
+    private boolean destaques;
     @NotBlank
     private String sumario;
+    @NotNull
+    private Integer estoque;
+
+//    @OneToMany(mappedBy = "livros")
+//    private ListCategorias categoria;
 
     public Livros() {
     }
 
-    public Livros(Autores autores, Categorias categorias, boolean destaque,Editoras editoras, Long id, Double preco, String sumario, String titulo) {
-        this.autores = autores;
-        this.categorias = categorias;
-        this.destaque = destaque;
-        this.editoras = editoras;
+    public Livros(Long id, String titulo, Autores autores, Editoras editoras, Categorias categorias, Double preco, boolean destaques, String sumario, List<Categorias> livros, Integer estoque) {
         this.id = id;
-        this.preco = preco;
-        this.sumario = sumario;
         this.titulo = titulo;
-    }
+        this.autores = autores;
+        this.editoras = editoras;
+        this.categorias = categorias;
+        this.preco = preco;
+        this.destaques = destaques;
+        this.sumario = sumario;
+        this.estoque = estoque;
 
-    public Autores getAutores() {
-        return autores;
     }
 
     public void setAutores(Autores autores) {
         this.autores = autores;
+    }
+
+    public void setEditoras(Editoras editoras) {
+        this.editoras = editoras;
+    }
+
+    public Autores getAutores() {
+        return autores;
     }
 
     public Categorias getCategorias() {
@@ -66,10 +73,6 @@ public class Livros {
 
     public Editoras getEditoras() {
         return editoras;
-    }
-
-    public void setEditoras(Editoras editoras) {
-        this.editoras = editoras;
     }
 
     public Long getId() {
@@ -96,12 +99,12 @@ public class Livros {
         this.preco = preco;
     }
 
-    public boolean isDestaque() {
-        return destaque;
+    public boolean isDestaques() {
+        return destaques;
     }
 
-    public void setDestaque(boolean destaque) {
-        this.destaque = destaque;
+    public void setDestaques(boolean destaque) {
+        this.destaques = destaque;
     }
 
     public String getSumario() {
@@ -110,5 +113,13 @@ public class Livros {
 
     public void setSumario(String sumario) {
         this.sumario = sumario;
+    }
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
     }
 }

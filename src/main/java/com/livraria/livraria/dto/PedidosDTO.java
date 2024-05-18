@@ -1,26 +1,27 @@
-package com.livraria.livraria.Entity;
+package com.livraria.livraria.dto;
 
-import jakarta.persistence.*;
+import com.livraria.livraria.Entity.Clientes;
+import com.livraria.livraria.Entity.Livros;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-@Entity
-public class Pedidos {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class PedidosDTO {
     private Long id;
     @NotBlank
-    @OneToOne
     private Clientes clientes;
-    @OneToMany
     private List<Livros> itens;
     private boolean ativo;
 
-    public Pedidos(Long id, Clientes clientes, List<Livros> itens, boolean ativo) {
+    public PedidosDTO() {
+
+    }
+
+    public PedidosDTO(Long id, Clientes clientes, List<Livros> itens, boolean ativo) {
         this.id = id;
         this.clientes = clientes;
         this.itens = itens;
+        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -47,11 +48,12 @@ public class Pedidos {
         this.itens = itens;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
     public boolean isAtivo() {
         return ativo;
     }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 }
+

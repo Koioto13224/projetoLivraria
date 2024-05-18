@@ -2,40 +2,36 @@ package com.livraria.livraria.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
 public class Enderecos {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+    @NotNull
     private String cep;
-    @NotBlank
+    @NotNull
     private String rua;
-    @NotBlank
+    @NotNull
     private String logradouro;
-    @NotBlank
+    @NotNull
     private String cidade;
-    @OneToMany
-    private List<Clientes> clientes;
 
-    public Enderecos(Long id, String cep, String rua, String logradouro, String cidade, List<Clientes> clientes) {
-        this.id = id;
+    @OneToOne
+    private Clientes clientes;
+
+
+    public Enderecos(String cep, String rua, String logradouro, String cidade) {
         this.cep = cep;
         this.rua = rua;
         this.logradouro = logradouro;
         this.cidade = cidade;
-        this.clientes = clientes;
     }
 
-    public List<Clientes> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Clientes> clientes) {
-        this.clientes = clientes;
+    public Enderecos() {
     }
 
     public String getCep() {
@@ -68,5 +64,13 @@ public class Enderecos {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public Clientes getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 }

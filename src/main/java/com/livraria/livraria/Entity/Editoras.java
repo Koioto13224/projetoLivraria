@@ -12,8 +12,7 @@ public class Editoras {
     private Long id;
     @NotBlank
     private String nome;
-    @NotBlank
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Livros> livros;
 
     public Editoras() {
@@ -22,6 +21,14 @@ public class Editoras {
     public Editoras(List<Livros> livros, String nome) {
         this.livros = livros;
         this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Livros> getLivros() {
