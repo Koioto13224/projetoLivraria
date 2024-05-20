@@ -10,6 +10,7 @@ import com.livraria.livraria.Repository.EditorasRepository;
 import com.livraria.livraria.Repository.LivrosRepository;
 import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.constraints.NotNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +28,15 @@ public class LivrosServices {
     EditorasRepository editorasRepository;
     @Autowired
     CategoriasRepository categoriasRepository;
+    @Autowired
+    ModelMapper modelMapper;
 
     Livros livros;
 
     public LivrosServices(LivrosRepository livrosRepository) {
         this.livrosRepository = livrosRepository;
     }
-    /*public void cadastrarLivros(Livros livros) {
-        livrosRepository.save(livros);
-    }*/
+
     public void cadastrarLivros( LivrosDTO livrosDTO) {
         Autores autores = autoresRepository.findById(livrosDTO.getIdautor())
                 .orElseThrow(() -> new IllegalArgumentException("Autor não encontrado com o ID: " + livrosDTO.getIdautor()));
@@ -45,15 +46,16 @@ public class LivrosServices {
 
         Categorias categorias = categoriasRepository.findById(livrosDTO.getIdcategorias()).orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com ID:" + livrosDTO.getIdeditora()));
 
-        Livros livros = new Livros();
+        Livros livros = converterPraEntidade(livrosDTO);
         livros.setAutores(autores);
         livros.setEditoras(editoras);
         livros.setCategorias(categorias);
-        livros.setTitulo(livrosDTO.getTitulo());
-        livros.setPreco(livrosDTO.getPreco());
-        livros.setEstoque(livrosDTO.getEstoque());
-        livros.setSumario(livrosDTO.getSumario());
         livrosRepository.save(livros);
+
+    }
+
+    private Livros converterPraEntidade(LivrosDTO livrosDTO){
+        return modelMapper.map(livrosDTO,Livros.class);
     }
 
 

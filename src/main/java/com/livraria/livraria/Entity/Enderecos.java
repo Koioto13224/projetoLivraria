@@ -1,5 +1,6 @@
 package com.livraria.livraria.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class Enderecos {
     private String cidade;
 
     @OneToOne
+    @JsonIgnore
     private Clientes clientes;
 
 
