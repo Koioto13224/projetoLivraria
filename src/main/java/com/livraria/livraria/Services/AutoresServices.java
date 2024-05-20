@@ -1,11 +1,17 @@
 package com.livraria.livraria.Services;
 
 import com.livraria.livraria.Entity.Autores;
+import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Repository.AutoresRepository;
+import com.livraria.livraria.dto.AutoresDTO;
+import com.livraria.livraria.dto.LivrosDTO;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,24 +19,27 @@ import java.util.Optional;
 public class AutoresServices {
 
     private AutoresRepository autoresRepository;
+    @Autowired
+    ModelMapper modelMapper;
 
     public AutoresServices(AutoresRepository autoresRepository) {
         this.autoresRepository = autoresRepository;
     }
 
-    /*public AutoresDto adicionarAutor(AutoresDto autor) {
-        var autorEntity = new Autores();
-        autorEntity.setNome(autor.getNome());
-        autorEntity.setAtivo(autor.isAtivo());
-        return AutoresMapper.map(autoresRepository.save(autorEntity));
-    }*/
 
     public void cadastrarAutores(Autores autores) {
         autoresRepository.save(autores);
     }
 
-    public List<Autores> listarTodosAutores() {
-        return autoresRepository.findAll();
+    public List<AutoresDTO> listarTodosAutores() {
+        List<Autores> autores = autoresRepository.findAll();
+        List<AutoresDTO> autoresDTOS = new ArrayList<>();
+
+        for (Autores autor:autores){
+            AutoresDTO autoresDTO = modelMapper.map(autor,AutoresDTO.class);
+            autoresDTOS.add(autoresDTO);
+        }
+        return autoresDTOS;
     }
 
     public Optional<Autores> buscarPorId(long id) {

@@ -11,7 +11,7 @@ public class AutoresDTO {
     private List<LivrosDTO> livros;
     private boolean ativo;
 
-    public AutoresDTO(Long id, String nome, List<LivrosDTO> livros, boolean ativo) {
+    public AutoresDTO(Long id, String nome, boolean ativo,List<LivrosDTO> livros) {
         this.id = id;
         this.nome = nome;
         this.livros = livros;

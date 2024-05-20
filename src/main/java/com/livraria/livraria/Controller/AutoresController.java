@@ -2,6 +2,7 @@ package com.livraria.livraria.Controller;
 
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Services.AutoresServices;
+import com.livraria.livraria.dto.AutoresDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class AutoresController {
     }
 
     @GetMapping("/listarTodosAutores")
-    public List<Autores> listarAutores() {
+    public List<AutoresDTO> listarAutores() {
         return autoresServices.listarTodosAutores();
     }
 

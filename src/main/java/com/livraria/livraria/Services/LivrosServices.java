@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,8 +60,15 @@ public class LivrosServices {
     }
 
 
-    public List<Livros> listarTodosLivros() {
-        return livrosRepository.findAll();
+    public List<LivrosDTO> listarTodosLivros() {
+        List<Livros> livros = livrosRepository.findAll();
+        List<LivrosDTO> livrosDTOS = new ArrayList<>();
+
+        for (Livros livro:livros){
+            LivrosDTO livrosDTO = modelMapper.map(livros,LivrosDTO.class);
+            livrosDTOS.add(livrosDTO);
+        }
+        return livrosDTOS;
     }
 
     public Optional<Livros> buscarPorId(long id) {

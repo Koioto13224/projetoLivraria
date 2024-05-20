@@ -3,6 +3,7 @@ package com.livraria.livraria.Controller;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Services.LivrosServices;
+import com.livraria.livraria.dto.AutoresDTO;
 import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class LivrosController {
     }
 
     @GetMapping("/listarLivros")
-    public List<Livros> listarLivros() {
+    public List<LivrosDTO> listarLivros() {
         return livrosServices.listarTodosLivros();
     }
 
