@@ -65,7 +65,11 @@ public class LivrosServices {
         List<LivrosDTO> livrosDTOS = new ArrayList<>();
 
         for (Livros livro:livros){
-            LivrosDTO livrosDTO = modelMapper.map(livros,LivrosDTO.class);
+            LivrosDTO livrosDTO = modelMapper.map(livro,LivrosDTO.class);
+            livrosDTO.setIdcategorias(livro.getCategorias().getId());
+            livrosDTO.setIdeditora(livro.getEditoras().getId());
+            livrosDTO.setIdautor(livro.getAutores().getId());
+
             livrosDTOS.add(livrosDTO);
         }
         return livrosDTOS;

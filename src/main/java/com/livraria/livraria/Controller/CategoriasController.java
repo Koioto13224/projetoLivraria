@@ -3,6 +3,7 @@ package com.livraria.livraria.Controller;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Funcionarios;
 import com.livraria.livraria.Services.CategoriasServices;
+import com.livraria.livraria.dto.CategoriaDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class CategoriasController {
     }
 
     @GetMapping("/listarCategorias")
-    public List<Categorias> listarCategorias() {
+    public List<CategoriaDTO> listarCategorias() {
         return categoriasServices.listarCategorias();
     }
 

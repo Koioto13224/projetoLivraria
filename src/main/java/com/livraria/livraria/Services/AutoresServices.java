@@ -3,6 +3,7 @@ package com.livraria.livraria.Services;
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Entity.Livros;
 import com.livraria.livraria.Repository.AutoresRepository;
+import com.livraria.livraria.Repository.LivrosRepository;
 import com.livraria.livraria.dto.AutoresDTO;
 import com.livraria.livraria.dto.LivrosDTO;
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,10 @@ import java.util.Optional;
 public class AutoresServices {
 
     private AutoresRepository autoresRepository;
+
+    @Autowired
+    LivrosRepository livrosRepository;
+
     @Autowired
     ModelMapper modelMapper;
 
@@ -37,6 +42,15 @@ public class AutoresServices {
 
         for (Autores autor:autores){
             AutoresDTO autoresDTO = modelMapper.map(autor,AutoresDTO.class);
+
+            List<LivrosDTO>  livrosDTOS = autoresDTO.getLivros();
+            for (LivrosDTO livrosDTO: livrosDTOS){
+                Livros livros = livrosRepository.findById(livrosDTO.getId()).orElse(null);
+                if (livros != null) {
+                    livrosDTO.setIdcategorias(livros.getCategorias().getId());
+                    livrosDTO.setIdeditora(livros.getEditoras().getId());
+                }
+            }
             autoresDTOS.add(autoresDTO);
         }
         return autoresDTOS;

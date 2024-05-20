@@ -1,24 +1,36 @@
 package com.livraria.livraria.Services;
 
-import com.livraria.livraria.Entity.Categorias;
-import com.livraria.livraria.Entity.Clientes;
-import com.livraria.livraria.Entity.Enderecos;
+import com.livraria.livraria.Entity.*;
 import com.livraria.livraria.Repository.CategoriasRepository;
+import com.livraria.livraria.dto.AutoresDTO;
+import com.livraria.livraria.dto.CategoriaDTO;
+import com.livraria.livraria.dto.LivrosDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CategoriasServices {
     @Autowired
     CategoriasRepository categoriasRepository;
+    @Autowired
+    ModelMapper modelMapper;
 
-    public List<Categorias> listarCategorias() {
-        List<Categorias> Cat = categoriasRepository.findAll();
-        return Cat;
+    public List<CategoriaDTO> listarCategorias() {
+        List<Categorias> categorias = categoriasRepository.findAll();
+        List<CategoriaDTO> categoriaDTOS = new ArrayList<>();
+
+        for (Categorias categoria:categorias){
+            CategoriaDTO categoriaDTO = modelMapper.map(categoria,CategoriaDTO.class);
+
+            categoriaDTOS.add(categoriaDTO);
+        }
+        return categoriaDTOS;
     }
 
     public void criarCategorias(Categorias categorias) {

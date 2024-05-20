@@ -1,6 +1,7 @@
 package com.livraria.livraria.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Editoras;
@@ -34,6 +35,18 @@ public class LivrosDTO {
     public LivrosDTO() {
     }
 
+    public LivrosDTO(boolean destaque, Integer estoque, Long id, Long idautor, Long idcategorias, Long ideditora, Double preco, String sumario, String titulo) {
+        this.destaque = destaque;
+        this.estoque = estoque;
+        this.id = id;
+        this.idautor = idautor;
+        this.idcategorias = idcategorias;
+        this.ideditora = ideditora;
+        this.preco = preco;
+        this.sumario = sumario;
+        this.titulo = titulo;
+    }
+
     public Long getId() {
         return id;
     }
@@ -49,7 +62,6 @@ public class LivrosDTO {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
     public Long getIdautor() {
         return idautor;
     }
