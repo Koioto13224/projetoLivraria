@@ -56,9 +56,29 @@ public class AutoresServices {
         return autoresDTOS;
     }
 
-    public Optional<Autores> buscarPorId(long id) {
-        return autoresRepository.findById(id);
+    public AutoresDTO buscarPorId(Long id) {
+        Optional<Autores> autoresOptional = autoresRepository.findById(id);
+
+        if (autoresOptional.isPresent()) {
+            Autores autor = autoresOptional.get();
+            AutoresDTO autoresDTO = modelMapper.map(autor, AutoresDTO.class);
+
+            // Mapear os livros associados ao autor
+            List<LivrosDTO> livrosDTOS = new ArrayList<>();
+            for (Livros livro : autor.getLivros()) {
+                LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);
+                livrosDTO.setIdcategorias(livro.getCategorias().getId());
+                livrosDTO.setIdeditora(livro.getEditoras().getId());
+                livrosDTOS.add(livrosDTO);
+            }
+            autoresDTO.setLivros(livrosDTOS);
+
+            return autoresDTO;
+        } else {
+            throw new IllegalArgumentException("Autor não encontrado com o ID: " + id);
+        }
     }
+
 
     public Autores atualizarAutor(Long id) {
         var autor = autoresRepository.findById(id)
@@ -72,9 +92,30 @@ public class AutoresServices {
         return autor;
     }
 
-    public Optional<Autores> buscarPorNome(String nome) {
-        return autoresRepository.findByNome(nome);
+    public AutoresDTO buscarPorNome(String nome) {
+        List<Autores> autores = autoresRepository.findByNome(nome);
+        List<AutoresDTO> autoresDTOS = new ArrayList<>();
+
+
+        AutoresDTO autoresDTO = null;
+        for (Autores autor : autores) {
+            autoresDTO = modelMapper.map(autor, AutoresDTO.class);
+
+            List<LivrosDTO> livrosDTOS = autoresDTO.getLivros();
+            for (LivrosDTO livrosDTO : livrosDTOS) {
+                Livros livros = livrosRepository.findById(livrosDTO.getId()).orElse(null);
+                if (livros != null) {
+                    livrosDTO.setIdcategorias(livros.getCategorias().getId());
+                    livrosDTO.setIdeditora(livros.getEditoras().getId());
+                }
+            }
+            autoresDTOS.add(autoresDTO);
+        }
+
+        return autoresDTO;
     }
+
+
 
     public void deletarAutor(Long id) {
         autoresRepository.deleteById(id);

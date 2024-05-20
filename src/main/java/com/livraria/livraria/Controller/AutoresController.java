@@ -31,12 +31,12 @@ public class AutoresController {
     }
 
     @GetMapping("/buscarPorId/{id}")
-    public Optional<Autores> buscarPorId(@PathVariable Long id) {
+    public AutoresDTO buscarPorId(@PathVariable Long id) {
         return autoresServices.buscarPorId(id);
     }
 
     @GetMapping("/buscarPorNome/{nome}")
-    public Optional<Autores> buscarPorNome(@PathVariable String nome) {
+    public AutoresDTO buscarPorNome(@PathVariable String nome) {
         return autoresServices.buscarPorNome(nome);
     }
 
