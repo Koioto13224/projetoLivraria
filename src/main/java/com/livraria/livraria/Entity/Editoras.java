@@ -12,7 +12,7 @@ public class Editoras {
     private Long id;
     @NotBlank
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "editoras")
     private List<Livros> livros;
 
     public Editoras() {

@@ -63,7 +63,6 @@ public class AutoresServices {
             Autores autor = autoresOptional.get();
             AutoresDTO autoresDTO = modelMapper.map(autor, AutoresDTO.class);
 
-            // Mapear os livros associados ao autor
             List<LivrosDTO> livrosDTOS = new ArrayList<>();
             for (Livros livro : autor.getLivros()) {
                 LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);

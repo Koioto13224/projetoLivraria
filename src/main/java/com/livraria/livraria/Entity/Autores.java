@@ -11,10 +11,13 @@ public class Autores {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NotBlank
     private String nome;
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "autores")
     private List<Livros> livros;
+
     private boolean ativo ;
 
     public Autores() {

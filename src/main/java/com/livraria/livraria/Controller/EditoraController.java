@@ -2,6 +2,7 @@ package com.livraria.livraria.Controller;
 
 import com.livraria.livraria.Entity.Editoras;
 import com.livraria.livraria.Services.EditoresServices;
+import com.livraria.livraria.dto.EditorasDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,16 +34,16 @@ public class EditoraController {
     }*/
 
     @GetMapping("/listarEditoras")
-    public List<Editoras> listarEditoras() {
-        return editoresServices.listarTodosEditoras();
+    public List<EditorasDTO> listarEditoras() {
+        return editoresServices.listarTodasEditoras();
     }
 
     @GetMapping("/buscarPeloNome/{nome}")
-    public Optional<Editoras> buscarPeloNome(@PathVariable @Valid String nome) {
+    public EditorasDTO buscarPeloNome(@PathVariable @Valid String nome) {
         return editoresServices.buscarPorEditora(nome);
     }
     @GetMapping("buscarEditoraPorId/{id}")
-    public Optional<Editoras> buscarPorid(@PathVariable @Valid Long id) {
+    public EditorasDTO buscarPorid(@PathVariable @Valid Long id) {
         return editoresServices.buscarPorId(id);
     }
     @PutMapping("/editarEditoras/{id}")
