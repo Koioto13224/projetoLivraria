@@ -30,34 +30,14 @@ public class LivrosController {
         return livrosServices.listarTodosLivros();
     }
 
-    @GetMapping("/buscar/{id}")
-    public Optional<Livros> buscarLivro(@PathVariable @Valid Long id) {
+    @GetMapping("/buscarLivroPorId/{id}")
+    public LivrosDTO buscarLivro(@PathVariable @Valid Long id) {
         return livrosServices.buscarPorId(id);
     }
 
-    @GetMapping("/buscar/{titulo}")
-    public Optional<Livros> buscarLivro(@PathVariable @Valid String titulo) {
-        return livrosServices.buscarPorTitulo(titulo);
-    }
-
-    @PutMapping("/editarLivro/{id}")
-    public Livros editarLivros (@RequestBody @PathVariable Livros livros) {
-        return livrosServices.editarLivros(livros);
-    }
-    //    @GetMapping("/destaques")
-//    public List <Livros> destaque(Livros destaques) {
-//        return livrosServices.destaque();
+//    @GetMapping("/buscarPorTitulo/{titulo}")
+//    public Optional<LivrosDTO> buscarLivro(@PathVariable @Valid String titulo) {
+//        return livrosServices.buscarPorTitulo(titulo);
 //    }
-//mexer dps
-    @GetMapping("/buscarCategoria/{categorias}")
-    public Optional<Livros> buscarCategoria(@PathVariable Categorias categorias) {
-        return livrosServices.buscarPorCategoria(categorias);
-    }
 
-    /*@PutMapping("/atualizarLivros/{id}")
-    public ResponseEntity<Void> atualizarLivros(@PathVariable Long id, @RequestBody Livros livros) {
-        livros.setId(id);
-        livrosServices.atualizarLivros(livros);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }*/
 }

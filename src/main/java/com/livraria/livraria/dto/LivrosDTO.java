@@ -2,6 +2,8 @@ package com.livraria.livraria.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Editoras;
@@ -12,16 +14,19 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LivrosDTO {
     private Long id;
     private String titulo;
     private Long idautor;
+    private String nomeAutor;
     private Double preco;
     private boolean destaque;
     private String sumario;
     private Long idcategorias;
+    private String nomeCategoria;
     private Long ideditora;
+    private String nomeEditora;
     private Integer estoque;
 
     public Integer getEstoque() {
@@ -47,6 +52,18 @@ public class LivrosDTO {
         this.titulo = titulo;
     }
 
+    public LivrosDTO(boolean destaque, Integer estoque, Long id, String nomeAutor, String nomeCategoria, String nomeEditora, Double preco, String sumario, String titulo) {
+        this.destaque = destaque;
+        this.estoque = estoque;
+        this.id = id;
+        this.nomeAutor = nomeAutor;
+        this.nomeCategoria = nomeCategoria;
+        this.nomeEditora = nomeEditora;
+        this.preco = preco;
+        this.sumario = sumario;
+        this.titulo = titulo;
+    }
+
     public Long getId() {
         return id;
     }
@@ -62,6 +79,7 @@ public class LivrosDTO {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public Long getIdautor() {
         return idautor;
     }
@@ -108,5 +126,29 @@ public class LivrosDTO {
 
     public void setIdeditora(Long ideditora) {
         this.ideditora = ideditora;
+    }
+
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
+    }
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
+
+    public String getNomeEditora() {
+        return nomeEditora;
+    }
+
+    public void setNomeEditora(String nomeEditora) {
+        this.nomeEditora = nomeEditora;
     }
 }

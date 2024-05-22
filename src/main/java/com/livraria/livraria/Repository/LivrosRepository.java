@@ -1,22 +1,25 @@
 package com.livraria.livraria.Repository;
 
-import com.livraria.livraria.Entity.Autores;
-import com.livraria.livraria.Entity.Categorias;
-import com.livraria.livraria.Entity.Editoras;
 import com.livraria.livraria.Entity.Livros;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface LivrosRepository extends JpaRepository<Livros,Long> {
-    Optional<Livros> findByTitulo(String titulo);
 
-    Optional<Livros> findByCategorias(Categorias categoria);
+    List<Livros> findByTituloContainingIgnoreCase(String query);
 
-    List<Livros> findByAutores(Autores autor);
+    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :autorNome, '%'))")
+    List<Livros> findByAutoresContainingIgnoreCase(@Param("autorNome") String query);
 
-    List<Livros> findByEditoras(Editoras editoras);
+    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :categoriaNome, '%'))")
+    List<Livros> findByCategoriasContainingIgnoreCase(@Param("categoriaNome") String query);
+
+    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :editoraNome, '%'))")
+    List<Livros> findByEditorasContainingIgnoreCase(@Param("editoraNome") String query);
+
 }

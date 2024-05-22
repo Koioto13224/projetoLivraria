@@ -106,6 +106,7 @@ public class AutoresServices {
                 if (livros != null) {
                     livrosDTO.setIdcategorias(livros.getCategorias().getId());
                     livrosDTO.setIdeditora(livros.getEditoras().getId());
+                    livrosDTO.setIdautor(livros.getAutores().getId());
                 }
             }
             autoresDTOS.add(autoresDTO);

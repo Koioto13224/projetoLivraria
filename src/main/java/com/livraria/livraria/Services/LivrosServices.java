@@ -8,6 +8,7 @@ import com.livraria.livraria.Repository.AutoresRepository;
 import com.livraria.livraria.Repository.CategoriasRepository;
 import com.livraria.livraria.Repository.EditorasRepository;
 import com.livraria.livraria.Repository.LivrosRepository;
+import com.livraria.livraria.dto.AutoresDTO;
 import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
@@ -66,39 +67,42 @@ public class LivrosServices {
 
         for (Livros livro:livros){
             LivrosDTO livrosDTO = modelMapper.map(livro,LivrosDTO.class);
-            livrosDTO.setIdcategorias(livro.getCategorias().getId());
-            livrosDTO.setIdeditora(livro.getEditoras().getId());
-            livrosDTO.setIdautor(livro.getAutores().getId());
+            livrosDTO.setNomeCategoria(livro.getCategorias().getNome());
+            livrosDTO.setNomeEditora(livro.getEditoras().getNome());
+            livrosDTO.setNomeAutor(livro.getAutores().getNome());
 
             livrosDTOS.add(livrosDTO);
         }
         return livrosDTOS;
     }
 
-    public Optional<Livros> buscarPorId(long id) {
-        return livrosRepository.findById(id);
+    public LivrosDTO buscarPorId(long id) {
+        Livros livro = livrosRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado com o ID: " + id));
+
+        LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);
+        livrosDTO.setNomeCategoria(livro.getCategorias().getNome());
+        livrosDTO.setNomeEditora(livro.getEditoras().getNome());
+        livrosDTO.setNomeAutor(livro.getAutores().getNome());
+
+        return livrosDTO;
     }
 
     public Livros editarLivros(Livros livros) {
         return livrosRepository.save(livros);
     }
 
-    public Optional<Livros> buscarPorTitulo(String titulo) {
-        return livrosRepository.findByTitulo(titulo);
-    }
-
-    public Optional<Livros> buscarPorCategoria(Categorias categorias) {
-        return livrosRepository.findByCategorias(categorias);
-    }
-//mexer dps
-//    public List<Livros> destaque() {
-//            return livrosRepository.findByDestaque();
+//    public LivrosDTO buscarPorTitulo(String titulo) {
+//        Livros livro = livrosRepository.findByTituloContainingIgnoreCase(titulo);
+//
+//        LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);
+//        livrosDTO.setNomeCategoria(livro.getCategorias().getNome());
+//        livrosDTO.setNomeEditora(livro.getEditoras().getNome());
+//        livrosDTO.setNomeAutor(livro.getAutores().getNome());
+//
+//        return Optional.of(livrosDTO);
 //    }
 
-    public Livros atualizarLivros(Livros livros) {
-        return livrosRepository.save(livros);
-    }
 
-   /* public List<Livros> destacarLivrosPorAno(int ano) {
-        return livrosRepository.findAllByAno(ano);*/
+
 }

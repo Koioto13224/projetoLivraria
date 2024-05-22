@@ -28,11 +28,6 @@ public class EditoraController {
         editoresServices.deletarEditora(id);
     }
 
-    /*@PutMapping("/editarEditoras")
-    public Editoras editarEditora(@RequestBody @Valid Editoras editoras) {
-        return editoresServices.AtualizarEditoras(editoras);
-    }*/
-
     @GetMapping("/listarEditoras")
     public List<EditorasDTO> listarEditoras() {
         return editoresServices.listarTodasEditoras();

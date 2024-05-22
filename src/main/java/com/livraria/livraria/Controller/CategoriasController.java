@@ -4,10 +4,12 @@ import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Funcionarios;
 import com.livraria.livraria.Services.CategoriasServices;
 import com.livraria.livraria.dto.CategoriaDTO;
+import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CategoriasController {
@@ -36,8 +38,9 @@ public class CategoriasController {
     public void ativarCategoria(@PathVariable Long id) {
         categoriasServices.ativarCategorias(id);
     }
-    @PutMapping("/editarCategorias")
-    public Categorias AtualizarCategorias(@RequestBody Categorias categorias) {
-        return categoriasServices.AtualizarCategorias(categorias);
+
+    @GetMapping("/buscarCategoria/{categorias}")
+    public Optional<CategoriaDTO> buscarCategoria(@PathVariable String nome) {
+        return categoriasServices.buscarPorCategoria(nome);
     }
 }
