@@ -39,8 +39,8 @@ public class CategoriasController {
         categoriasServices.ativarCategorias(id);
     }
 
-    @GetMapping("/buscarCategoria/{categorias}")
-    public Optional<CategoriaDTO> buscarCategoria(@PathVariable String nome) {
+    @GetMapping("/buscarCategoria/{nome}")
+    public CategoriaDTO buscarCategoria(@PathVariable String nome) {
         return categoriasServices.buscarPorCategoria(nome);
     }
 }

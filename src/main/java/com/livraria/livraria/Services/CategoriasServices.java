@@ -14,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoriasServices {
@@ -25,6 +24,7 @@ public class CategoriasServices {
     @Autowired
     ModelMapper modelMapper;
 
+
     public List<CategoriaDTO> listarCategorias() {
         List<Categorias> categorias = categoriasRepository.findAll();
         List<CategoriaDTO> categoriaDTOS = new ArrayList<>();
@@ -32,10 +32,23 @@ public class CategoriasServices {
         for (Categorias categoria:categorias){
             CategoriaDTO categoriaDTO = modelMapper.map(categoria,CategoriaDTO.class);
 
+            if (categoriaDTO.getLivros() == null) {
+                categoriaDTO.setLivros(new ArrayList<>());
+            }
+
+            List<LivrosDTO>  livrosDTOS = categoriaDTO.getLivros();
+            for (LivrosDTO livrosDTO: livrosDTOS){
+                Livros livros = livrosRepository.findById(livrosDTO.getId()).orElse(null);
+                if (livros != null) {
+                    livrosDTO.setNomeAutor(livros.getAutores().getNome());
+                    livrosDTO.setNomeEditora(livros.getEditoras().getNome());
+                }
+            }
             categoriaDTOS.add(categoriaDTO);
         }
         return categoriaDTOS;
     }
+
 
     public void criarCategorias(Categorias categorias) {
         categoriasRepository.save(categorias);
@@ -66,13 +79,13 @@ public class CategoriasServices {
         return categoriasRepository.save(categorias);
     }
 
-    public Optional<CategoriaDTO> buscarPorCategoria(String nome) {
-        List<Categorias> categoria = categoriasRepository.findByNome(nome);
+    public CategoriaDTO buscarPorCategoria(String nome) {
+        List<Categorias> categorias = categoriasRepository.findByNomeContainingIgnoreCase(nome);
         List<CategoriaDTO> categoriaDTOS = new ArrayList<>();
 
 
         CategoriaDTO categoriaDTO = null;
-        for (Categorias categorias : categoria) {
+        for (Categorias categoria : categorias) {
             categoriaDTO = modelMapper.map(categoria, CategoriaDTO.class);
 
             List<LivrosDTO> livrosDTOS = categoriaDTO.getLivros();
@@ -87,6 +100,6 @@ public class CategoriasServices {
             categoriaDTOS.add(categoriaDTO);
         }
 
-        return Optional.of(categoriaDTO);
+        return categoriaDTO;
     }
 }

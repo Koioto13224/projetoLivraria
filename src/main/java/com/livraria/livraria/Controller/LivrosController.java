@@ -35,9 +35,9 @@ public class LivrosController {
         return livrosServices.buscarPorId(id);
     }
 
-//    @GetMapping("/buscarPorTitulo/{titulo}")
-//    public Optional<LivrosDTO> buscarLivro(@PathVariable @Valid String titulo) {
-//        return livrosServices.buscarPorTitulo(titulo);
-//    }
+    @GetMapping("/buscarPorTitulo/{titulo}")
+    public List<LivrosDTO> buscarLivro(@PathVariable @Valid String titulo) {
+        return livrosServices.buscarPorTitulo(titulo);
+    }
 
 }

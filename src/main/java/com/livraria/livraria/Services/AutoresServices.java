@@ -92,7 +92,7 @@ public class AutoresServices {
     }
 
     public AutoresDTO buscarPorNome(String nome) {
-        List<Autores> autores = autoresRepository.findByNome(nome);
+        List<Autores> autores = autoresRepository.findByNomeContainingIgnoreCase(nome);
         List<AutoresDTO> autoresDTOS = new ArrayList<>();
 
 

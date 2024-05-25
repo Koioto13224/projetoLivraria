@@ -81,7 +81,7 @@ public class EditoresServices {
     }
 
     public EditorasDTO buscarPorEditora(String nome) {
-        List<Editoras> editoras = editorasRepository.findByNome(nome);
+        List<Editoras> editoras = editorasRepository.findByNomeContainingIgnoreCase(nome);
         List<EditorasDTO> editorasDTO = new ArrayList<>();
 
 

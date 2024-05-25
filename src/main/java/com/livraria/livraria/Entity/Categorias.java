@@ -17,15 +17,16 @@ public class Categorias {
     private String nome;
     @NotNull
     private boolean ativo;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "categorias")
     private List<Livros> livros;
 
     public Categorias() {
     }
 
-    public Categorias(boolean ativo,String nome) {
+    public Categorias(boolean ativo,String nome,List<Livros> livros) {
         this.ativo = ativo;
         this.nome = nome;
+        this.livros = livros;
     }
     public Long getId() {
         return id;
@@ -41,5 +42,21 @@ public class Categorias {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Livros> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livros> livros) {
+        this.livros = livros;
     }
 }

@@ -92,14 +92,20 @@ public class LivrosServices {
         return livrosRepository.save(livros);
     }
 
-    public LivrosDTO buscarPorTitulo(String titulo) {
-        List<Livros> livro = livrosRepository.findByTituloContainingIgnoreCase(titulo);
+    public List<LivrosDTO> buscarPorTitulo(String titulo) {
+        List<Livros> livros = livrosRepository.findByTituloContainingIgnoreCase(titulo);
+        List<LivrosDTO> livrosDTOS = new ArrayList<>();
 
-            LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);
-            livrosDTO.setNomeCategoria(livros.getCategorias().getNome());
-            livrosDTO.setNomeEditora(livros.getEditoras().getNome());
-            livrosDTO.setNomeAutor(livros.getAutores().getNome());
-            return livrosDTO;
+            for(Livros livro:livros) {
+                LivrosDTO livrosDTO = modelMapper.map(livro, LivrosDTO.class);
+                livrosDTO.setNomeCategoria(livro.getCategorias().getNome());
+                livrosDTO.setNomeEditora(livro.getEditoras().getNome());
+                livrosDTO.setNomeAutor(livro.getAutores().getNome());
+
+                livrosDTOS.add(livrosDTO);
+
+            }
+            return livrosDTOS;
     }
 
 

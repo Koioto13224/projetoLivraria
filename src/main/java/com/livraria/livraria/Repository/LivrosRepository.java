@@ -1,6 +1,7 @@
 package com.livraria.livraria.Repository;
 
 import com.livraria.livraria.Entity.Livros;
+import com.livraria.livraria.dto.LivrosDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,15 +13,9 @@ import java.util.Optional;
 @Repository
 public interface LivrosRepository extends JpaRepository<Livros,Long> {
 
-    List<Livros> findByTituloContainingIgnoreCase(String query);
-
-    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :autorNome, '%'))")
-    List<Livros> findByAutoresContainingIgnoreCase(@Param("autorNome") String query);
-
-    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :categoriaNome, '%'))")
-    List<Livros> findByCategoriasContainingIgnoreCase(@Param("categoriaNome") String query);
-
-    @Query("SELECT l FROM Livros l JOIN l.categorias c WHERE LOWER(c.nome) LIKE LOWER(concat('%', :editoraNome, '%'))")
-    List<Livros> findByEditorasContainingIgnoreCase(@Param("editoraNome") String query);
-
+    List<Livros> findByTituloContainingIgnoreCase(String titulo);
+    List<Livros> findByEditorasNomeContainingIgnoreCase(String nome);
+    List<Livros> findByAutoresNomeContainingIgnoreCase(String nome);
+    List<Livros> findByCategoriasNomeContainingIgnoreCase(String nome);
+    List<Livros> findByDestaqueTrue();
 }

@@ -1,6 +1,5 @@
 package com.livraria.livraria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,26 +25,24 @@ public class Livros {
     @NotNull
     private Double preco;
     @NotNull
-    private boolean destaques;
+    private boolean destaque;
     @NotBlank
     private String sumario;
     @NotNull
     private Integer estoque;
 
-//    @OneToMany(mappedBy = "livros")
-//    private ListCategorias categoria;
 
     public Livros() {
     }
 
-    public Livros(Long id, String titulo, Autores autores, Editoras editoras, Categorias categorias, Double preco, boolean destaques, String sumario, List<Categorias> livros, Integer estoque) {
+    public Livros(Long id, String titulo, Autores autores, Editoras editoras, Categorias categorias, Double preco, boolean destaque, String sumario, List<Categorias> livros, Integer estoque) {
         this.id = id;
         this.titulo = titulo;
         this.autores = autores;
         this.editoras = editoras;
         this.categorias = categorias;
         this.preco = preco;
-        this.destaques = destaques;
+        this.destaque = destaque;
         this.sumario = sumario;
         this.estoque = estoque;
 
@@ -99,12 +96,12 @@ public class Livros {
         this.preco = preco;
     }
 
-    public boolean isDestaques() {
-        return destaques;
+    public boolean isDestaque() {
+        return destaque;
     }
 
-    public void setDestaques(boolean destaque) {
-        this.destaques = destaque;
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
     }
 
     public String getSumario() {
