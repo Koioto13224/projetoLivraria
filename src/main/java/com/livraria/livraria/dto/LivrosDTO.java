@@ -1,13 +1,10 @@
 package com.livraria.livraria.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.livraria.livraria.Entity.Autores;
 import com.livraria.livraria.Entity.Categorias;
 import com.livraria.livraria.Entity.Editoras;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

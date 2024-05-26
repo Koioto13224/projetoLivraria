@@ -65,14 +65,50 @@ public class HomeServices {
         List<Livros> livrosEmDestaques = livrosRepository.findByDestaqueTrue();
         List<LivrosDTO> livrosDTO = new ArrayList<>();
 
-        for(Livros livros:livrosEmDestaques){
-            LivrosDTO livrosDTOS = modelMapper.map(livros,LivrosDTO.class);
-            livrosDTOS.setNomeAutor(livros.getAutores().getNome());
-            livrosDTOS.setNomeEditora(livros.getEditoras().getNome());
-            livrosDTOS.setNomeCategoria(livros.getCategorias().getNome());
+        for (Livros livros:livrosEmDestaques){
+            LivrosDTO livrosDTOS = new LivrosDTO();
+
+            livrosDTOS.setId(livros.getId());
+            livrosDTOS.setTitulo(livros.getTitulo());
+            livrosDTOS.setPreco(livros.getPreco());
+
             livrosDTO.add(livrosDTOS);
         }
+
         return livrosDTO;
     }
 
+    public List<LivrosDTO> DetalhesDoDestaque() {
+        List<Livros> livrosEmDestaques = livrosRepository.findByDestaqueTrue();
+        List<LivrosDTO> livrosDTO = new ArrayList<>();
+
+        for (Livros livros:livrosEmDestaques){
+            LivrosDTO livrosDTOS = new LivrosDTO();
+
+            livrosDTOS.setId(livros.getId());
+            livrosDTOS.setTitulo(livros.getTitulo());
+            livrosDTOS.setPreco(livros.getPreco());
+            livrosDTOS.setNomeAutor(livros.getAutores().getNome());
+            livrosDTOS.setSumario(livros.getSumario());
+
+            livrosDTO.add(livrosDTOS);
+        }
+
+        return livrosDTO;
+    }
 }
+
+//public List<LivrosDTO> DestaquesDaHome(){
+//    List<Livros> livrosEmDestaques = livrosRepository.findByDestaqueTrue();
+//    List<LivrosDTO> livrosDTO = new ArrayList<>();
+//
+//    for(Livros livros:livrosEmDestaques){
+//        LivrosDTO livrosDTOS = modelMapper.map(livros,LivrosDTO.class);
+//        livrosDTOS.setNomeAutor(livros.getAutores().getNome());
+//        livrosDTOS.setNomeEditora(livros.getEditoras().getNome());
+//        livrosDTOS.setNomeCategoria(livros.getCategorias().getNome());
+//        livrosDTO.add(livrosDTOS);
+//    }
+//    return livrosDTO;
+//}
+

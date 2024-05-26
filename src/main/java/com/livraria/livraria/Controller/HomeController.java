@@ -30,4 +30,10 @@ public class HomeController {
     public List<LivrosDTO> destaques(){
         return services.DestaquesDaHome();
     }
+
+    @GetMapping("/{id}")
+    public List<LivrosDTO> detalheDosDestaques(){
+        return services.DetalhesDoDestaque();
+    }
+
 }
