@@ -1,6 +1,5 @@
 package com.livraria.livraria.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,12 +30,15 @@ public class Livros {
     private String sumario;
     @NotNull
     private Integer estoque;
+    @NotBlank
+    private String imagem;
 
 
     public Livros() {
     }
 
-    public Livros(Long id, String titulo, Autores autores, Editoras editoras, Categorias categorias, Double preco, boolean destaque, String sumario, List<Categorias> livros, Integer estoque) {
+    public Livros(Long id, String titulo, Autores autores, Editoras editoras, Categorias categorias,
+                  Double preco, boolean destaque, String sumario, List<Categorias> livros, Integer estoque,String imagem) {
         this.id = id;
         this.titulo = titulo;
         this.autores = autores;
@@ -46,7 +48,15 @@ public class Livros {
         this.destaque = destaque;
         this.sumario = sumario;
         this.estoque = estoque;
+        this.imagem = imagem;
+    }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public void setAutores(Autores autores) {

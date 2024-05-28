@@ -25,6 +25,7 @@ public class LivrosDTO {
     private Long ideditora;
     private String nomeEditora;
     private Integer estoque;
+    private String imagem;
 
     public Integer getEstoque() {
         return estoque;
@@ -37,7 +38,8 @@ public class LivrosDTO {
     public LivrosDTO() {
     }
 
-    public LivrosDTO(boolean destaque, Integer estoque, Long id, Long idautor, Long idcategorias, Long ideditora, Double preco, String sumario, String titulo) {
+    public LivrosDTO(boolean destaque, Integer estoque, Long id, Long idautor,
+                     Long idcategorias, Long ideditora, Double preco, String sumario, String titulo,String imagem) {
         this.destaque = destaque;
         this.estoque = estoque;
         this.id = id;
@@ -47,6 +49,7 @@ public class LivrosDTO {
         this.preco = preco;
         this.sumario = sumario;
         this.titulo = titulo;
+        this.imagem = imagem;
     }
 
     public LivrosDTO(boolean destaque, Integer estoque, Long id, String nomeAutor, String nomeCategoria, String nomeEditora, Double preco, String sumario, String titulo) {
@@ -59,6 +62,14 @@ public class LivrosDTO {
         this.preco = preco;
         this.sumario = sumario;
         this.titulo = titulo;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public Long getId() {
