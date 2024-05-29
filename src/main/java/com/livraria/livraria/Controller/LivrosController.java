@@ -7,12 +7,19 @@ import com.livraria.livraria.dto.AutoresDTO;
 import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class LivrosController {
+
+    private static final String caminhoImagem = "/livraria/src/main/resources/Imagens/";
 
     LivrosServices livrosServices;
 
@@ -21,7 +28,20 @@ public class LivrosController {
     }
 
     @PostMapping("/cadastrarLivros")
-    public void cadastrarLivros(@Valid @RequestBody LivrosDTO livros) {
+    public void cadastrarLivros(@Valid @RequestBody LivrosDTO livros, @RequestParam("file") MultipartFile imagem) {
+
+        try{
+            if (!imagem.isEmpty()){
+                byte[] bytes = imagem.getBytes();
+                Path path = Paths.get(caminhoImagem+imagem.getOriginalFilename());
+                Files.write(path,bytes);
+                livros.setImagem(caminhoImagem+imagem.getOriginalFilename());
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
         livrosServices.cadastrarLivros(livros);
     }
 

@@ -52,6 +52,7 @@ public class LivrosServices {
         livros.setAutores(autores);
         livros.setEditoras(editoras);
         livros.setCategorias(categorias);
+        livros.setImagem(livrosDTO.getImagem());
         livrosRepository.save(livros);
 
     }
