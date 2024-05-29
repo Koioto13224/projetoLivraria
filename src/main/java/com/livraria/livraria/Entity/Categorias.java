@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class Categorias {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String nome;

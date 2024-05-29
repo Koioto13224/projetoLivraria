@@ -26,6 +26,7 @@ public class HomeController {
     public List<LivrosDTO> buscarLivro(@PathVariable String query){
         return services.buscaGeneralizada(query);
     }
+
     @GetMapping
     public List<LivrosDTO> destaques(){
         return services.DestaquesDaHome();

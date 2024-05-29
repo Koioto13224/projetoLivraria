@@ -35,20 +35,10 @@ public class HomeServices {
     public List<LivrosDTO> buscaGeneralizada(String query){
         Set<Livros> livros = new HashSet<>(livrosRepository.findByTituloContainingIgnoreCase(query));
 
-        List<Autores> autores = autoresRepository.findByNomeContainingIgnoreCase(query);
-        for (Autores autor : autores) {
-            livros.addAll(autor.getLivros());
-        }
+        livros.addAll(livrosRepository.findByAutores_NomeContainingIgnoreCase(query));
+        livros.addAll(livrosRepository.findByCategorias_NomeContainingIgnoreCase(query));
+        livros.addAll(livrosRepository.findByEditoras_NomeContainingIgnoreCase(query));
 
-        List<Categorias> categorias = categoriasRepository.findByNomeContainingIgnoreCase(query);
-        for (Categorias categoria : categorias) {
-            livros.addAll(categoria.getLivros());
-        }
-
-        List<Editoras> editoras = editorasRepository.findByNomeContainingIgnoreCase(query);
-        for (Editoras editora : editoras) {
-            livros.addAll(editora.getLivros());
-        }
 
         List<LivrosDTO> livrosDTO = new ArrayList<>();
         for (Livros livro:livros){
@@ -71,7 +61,7 @@ public class HomeServices {
             livrosDTOS.setId(livros.getId());
             livrosDTOS.setTitulo(livros.getTitulo());
             livrosDTOS.setPreco(livros.getPreco());
-
+            livrosDTOS.setDestaque(livros.isDestaque());
             livrosDTO.add(livrosDTOS);
         }
 
@@ -90,7 +80,7 @@ public class HomeServices {
             livrosDTOS.setPreco(livros.getPreco());
             livrosDTOS.setNomeAutor(livros.getAutores().getNome());
             livrosDTOS.setSumario(livros.getSumario());
-
+            livrosDTOS.setDestaque(livros.isDestaque());
             livrosDTO.add(livrosDTOS);
         }
 

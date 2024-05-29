@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +19,10 @@ public interface LivrosRepository extends JpaRepository<Livros,Long> {
     List<Livros> findByAutoresNomeContainingIgnoreCase(String nome);
     List<Livros> findByCategoriasNomeContainingIgnoreCase(String nome);
     List<Livros> findByDestaqueTrue();
+
+    List<Livros> findByAutores_NomeContainingIgnoreCase(String query);
+
+    List<Livros> findByCategorias_NomeContainingIgnoreCase(String query);
+
+    List<Livros> findByEditoras_NomeContainingIgnoreCase(String query);
 }

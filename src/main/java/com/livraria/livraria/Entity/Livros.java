@@ -18,10 +18,10 @@ public class Livros {
     @ManyToOne(cascade = CascadeType.ALL)
     private Autores autores;
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Editoras editoras;
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Categorias categorias;
     @NotNull
     private Double preco;
