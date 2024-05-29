@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +21,7 @@ import java.util.Optional;
 @RestController
 public class LivrosController {
 
-    private static final String caminhoImagem = "/livraria/src/main/resources/Imagens/";
+    private static final String caminhoImagem = "/livraria/src/main/resources/imagens/";
 
     LivrosServices livrosServices;
 
@@ -28,14 +30,16 @@ public class LivrosController {
     }
 
     @PostMapping("/cadastrarLivros")
-    public void cadastrarLivros(@Valid @RequestBody LivrosDTO livros, @RequestParam("file") MultipartFile imagem) {
+    public void cadastrarLivros(@RequestPart("imagem") MultipartFile imagem, @RequestPart("livros") LivrosDTO livros) {
 
         try{
             if (!imagem.isEmpty()){
                 byte[] bytes = imagem.getBytes();
-                Path path = Paths.get(caminhoImagem+imagem.getOriginalFilename());
-                Files.write(path,bytes);
-                livros.setImagem(caminhoImagem+imagem.getOriginalFilename());
+                String fileName = imagem.getOriginalFilename();
+                BufferedOutputStream stream= new BufferedOutputStream(new FileOutputStream("src/main/resources/imagens/"+fileName));
+                stream.write(bytes);
+                stream.close();
+                livros.setImagem(fileName);
             }
         }catch (IOException e){
             e.printStackTrace();
