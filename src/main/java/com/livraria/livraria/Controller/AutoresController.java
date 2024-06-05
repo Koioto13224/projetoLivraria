@@ -50,15 +50,4 @@ public class AutoresController {
         autoresServices.deletarAutor(id);
     }
 
-    @PutMapping("/inativarAutores/{id}")
-    public ResponseEntity<Void> inativarAutores(@PathVariable Long id) {
-        autoresServices.inativarAutores(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/ativarAutores/{id}")
-    public ResponseEntity<Void> ativarAutores(@PathVariable Long id) {
-        autoresServices.ativarAutores(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

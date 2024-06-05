@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Carrinho {
 
-    private Clientes clientes;
+    private Long clientes;
     private List<ItemVenda> itemVendas;
     private Double total;
 
-    public Clientes getClientes() {
+    public Long getClientes() {
         return clientes;
     }
 
-    public void setClientes(Clientes clientes) {
+    public void setIdClientes(Long clientes) {
         this.clientes = clientes;
     }
 

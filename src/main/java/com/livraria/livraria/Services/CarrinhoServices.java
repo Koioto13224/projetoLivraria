@@ -1,8 +1,9 @@
 package com.livraria.livraria.Services;
 
-import com.livraria.livraria.Entity.ItemVenda;
-import com.livraria.livraria.Entity.Livros;
+import com.livraria.livraria.Entity.*;
+import com.livraria.livraria.Repository.ClientesRepository;
 import com.livraria.livraria.Repository.LivrosRepository;
+import com.livraria.livraria.Repository.PedidosRepository;
 import com.livraria.livraria.dto.LivrosDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,12 @@ public class CarrinhoServices {
     LivrosRepository livrosRepository;
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    ClientesRepository clientesRepository;
+    @Autowired
+    PedidosRepository pedidosRepository;
+    @Autowired
+    PedidosServices pedidosServices;
 
     private List<ItemVenda> item = new ArrayList<>();
 
@@ -110,6 +117,21 @@ public class CarrinhoServices {
 
     public List<ItemVenda> listarItensDoCarrinho() {
         return item;
+    }
+
+    public Pedidos comprar(Long clienteId,TipoPagamento tipoPagamento) {
+
+        Clientes cliente = clientesRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        Pedidos pedido = new Pedidos();
+        pedido.setClientes(cliente);
+        pedido.setTotal(calcularValorItens());
+        pedido.setPedidoStatus(PedidoStatus.PROCESSANDO);
+
+        Pedidos salvo =pedidosRepository.save(pedido);
+
+        return salvo;
     }
 
 }

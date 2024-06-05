@@ -1,6 +1,7 @@
 package com.livraria.livraria.Controller;
 
 import com.livraria.livraria.Entity.Pedidos;
+import com.livraria.livraria.Entity.TipoPagamento;
 import com.livraria.livraria.Services.PedidosServices;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +28,8 @@ public class PedidosController {
         return pedidosServices.buscarPedidoPorId(id);
     }
 
-    @PostMapping("/cadastrarPedidos")
-    public void cadastrarAutores(@Valid @RequestBody Pedidos pedidos) {
-        pedidosServices.cadastrarPedidos(pedidos);
+    @PostMapping("/finalizar")
+    public Pedidos finalizarPedido(@RequestParam("pedidoId") Long pedidoId, @RequestParam("tipoPagamento") TipoPagamento tipoPagamento) {
+        return pedidosServices.finalizar(pedidoId, tipoPagamento);
     }
-    @DeleteMapping("/deletarPedidos/{id}")
-    public void deletarPedidos(@PathVariable long id) {
-        pedidosServices.deletarPedidos(id);
-    }
-
 }

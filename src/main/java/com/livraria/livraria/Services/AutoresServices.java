@@ -40,11 +40,11 @@ public class AutoresServices {
         List<Autores> autores = autoresRepository.findAll();
         List<AutoresDTO> autoresDTOS = new ArrayList<>();
 
-        for (Autores autor:autores){
-            AutoresDTO autoresDTO = modelMapper.map(autor,AutoresDTO.class);
+        for (Autores autor : autores) {
+            AutoresDTO autoresDTO = modelMapper.map(autor, AutoresDTO.class);
 
-            List<LivrosDTO>  livrosDTOS = autoresDTO.getLivros();
-            for (LivrosDTO livrosDTO: livrosDTOS){
+            List<LivrosDTO> livrosDTOS = autoresDTO.getLivros();
+            for (LivrosDTO livrosDTO : livrosDTOS) {
                 Livros livros = livrosRepository.findById(livrosDTO.getId()).orElse(null);
                 if (livros != null) {
                     livrosDTO.setIdcategorias(livros.getCategorias().getId());
@@ -115,34 +115,8 @@ public class AutoresServices {
         return autoresDTO;
     }
 
-
-
     public void deletarAutor(Long id) {
         autoresRepository.deleteById(id);
-    }
-
-    public Autores inativarAutores(Long id) {
-        var autor = autoresRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Autor não encontrado"
-                ));
-
-        autor.setAtivo(false);
-
-        return autoresRepository.save(autor);
-    }
-
-    public Autores ativarAutores(Long id) {
-        var autor = autoresRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Autor não encontrado"
-                ));
-
-        autor.setAtivo(true);
-
-        return autoresRepository.save(autor);
     }
 
 }

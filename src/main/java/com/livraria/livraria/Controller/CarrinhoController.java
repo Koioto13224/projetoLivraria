@@ -1,8 +1,8 @@
 package com.livraria.livraria.Controller;
 
-import com.livraria.livraria.Entity.Carrinho;
-import com.livraria.livraria.Entity.ItemVenda;
+import com.livraria.livraria.Entity.*;
 import com.livraria.livraria.Services.CarrinhoServices;
+import com.livraria.livraria.dto.ClienteDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +44,17 @@ public class CarrinhoController {
     @GetMapping("/mostrarCarrinho")
     public Carrinho listarCarrinho(){
         Carrinho carrinho = new Carrinho();
+        ClienteDTO clienteDTO = new ClienteDTO();
         List<ItemVenda> itens = services.listarItensDoCarrinho();
-        carrinho.setItemVendas(services.listarItensDoCarrinho());
+        carrinho.setItemVendas(itens);
         carrinho.setTotal(services.calcularValorItens());
+        carrinho.setIdClientes(clienteDTO.getId());
         return carrinho;
     }
+
+    @PostMapping("/comprar")
+    public Pedidos comprar(@RequestParam("clienteID") Long clienteId, @RequestParam("tipePagamento")TipoPagamento tipoPagamento){
+        return services.comprar(clienteId,tipoPagamento);
+    }
+
 }

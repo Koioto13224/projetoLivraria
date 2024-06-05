@@ -2,6 +2,7 @@ package com.livraria.livraria.Controller;
 
 import com.livraria.livraria.Entity.Clientes;
 import com.livraria.livraria.Services.ClientesServices;
+import com.livraria.livraria.dto.ClienteDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +30,6 @@ public class ClientesController {
         clientesServices.deletarCliente(id);
     }
 
-    @PutMapping("/editarClientes/{id}")
-    public Clientes editarClientes(@PathVariable  Clientes clientes) {
-        return clientesServices.AtualizarClientes(clientes);
-    }
 
     @GetMapping("/listarClientes")
     public List<Clientes> listarClientes() {
@@ -40,7 +37,7 @@ public class ClientesController {
     }
 
     @GetMapping("/buscarClientesId/{id}")
-    public Optional<Clientes> buscarPeloClientes(@PathVariable long id) {
+    public ClienteDTO buscarPeloClientes(@PathVariable long id) {
         return clientesServices.buscarPeloIdClientes(id);
     }
 
