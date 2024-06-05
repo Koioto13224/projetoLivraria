@@ -26,7 +26,7 @@ public class CarrinhoServices {
     @Autowired
     PedidosServices pedidosServices;
 
-    private List<ItemVenda> item = new ArrayList<>();
+    private final List<ItemVenda> item = new ArrayList<>();
 
     public void adicionar(Long id){
         Livros livros = livrosRepository.findById(id).orElseThrow();
@@ -42,7 +42,7 @@ public class CarrinhoServices {
 
         ItemVenda itemVenda = new ItemVenda();
 
-        itemVenda.setLivros(livrosDTO);
+        itemVenda.setLivros(livros);
         itemVenda.setQtdLivro(1);
         itemVenda.setSubTotal(livrosDTO.getPreco());
 
@@ -126,12 +126,12 @@ public class CarrinhoServices {
 
         Pedidos pedido = new Pedidos();
         pedido.setClientes(cliente);
+        pedido.setItens(item);
         pedido.setTotal(calcularValorItens());
         pedido.setPedidoStatus(PedidoStatus.PROCESSANDO);
-
-        Pedidos salvo =pedidosRepository.save(pedido);
-
-        return salvo;
+        Pedidos pedidoSalvo = pedidosRepository.save(pedido);
+        removerTodos();
+        return pedidoSalvo;
     }
 
 }

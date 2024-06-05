@@ -20,9 +20,6 @@ public class PedidosServices {
     PedidosRepository pedidosRepository;
     @Autowired
     LivrosRepository livrosRepository;
-    @Autowired
-    @Lazy
-    CarrinhoServices carrinhoServices;
 
     public List<Pedidos> listarTodosPedidos() {
         return pedidosRepository.findAll();
@@ -48,7 +45,7 @@ public class PedidosServices {
     public Pedidos finalizar(Long pedidoId, TipoPagamento tipoPagamento){
 
         Pedidos pedidos = pedidosRepository.findById(pedidoId).orElseThrow();
-        List<ItemVenda> itens = carrinhoServices.listarItensDoCarrinho();
+        List<ItemVenda> itens = new ArrayList<>();
 
         if (itens.isEmpty()){throw new RuntimeException("Sem item");}
 
@@ -68,8 +65,8 @@ public class PedidosServices {
 
         pedidos.setPedidoStatus(PedidoStatus.CONCLUIDO);
         pedidos.setTipoPagamento(tipoPagamento);
+        pedidos.setItens(itens);
         Pedidos pedidoSalvo = pedidosRepository.save(pedidos);
-        carrinhoServices.removerTodos();
         return pedidoSalvo;
     }
 

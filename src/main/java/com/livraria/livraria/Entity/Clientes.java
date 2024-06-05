@@ -1,6 +1,7 @@
 package com.livraria.livraria.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,10 +14,10 @@ public class Clientes extends Pessoas {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Enderecos enderecos;
     @NotBlank
+    @Email
     private String email;
     @NotBlank
     private String senha;

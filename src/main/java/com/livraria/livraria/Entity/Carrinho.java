@@ -1,10 +1,15 @@
 package com.livraria.livraria.Entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+
 import java.util.List;
 
 public class Carrinho {
 
     private Long clientes;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "carrinho",fetch = FetchType.EAGER)
     private List<ItemVenda> itemVendas;
     private Double total;
 

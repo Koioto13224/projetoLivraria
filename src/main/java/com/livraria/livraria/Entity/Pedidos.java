@@ -14,6 +14,9 @@ public class Pedidos {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Clientes clientes;
+    @NotNull
+    @OneToMany
+    private List<ItemVenda> itens;
 
 //    @OneToMany(mappedBy = "pedidos",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //    @Transient
@@ -82,5 +85,13 @@ public class Pedidos {
 
     public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemVenda> itens) {
+        this.itens = itens;
     }
 }
