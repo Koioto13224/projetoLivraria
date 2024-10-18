@@ -42,8 +42,9 @@ public class CarrinhoServices {
 
         ItemVenda itemVenda = new ItemVenda();
 
-        itemVenda.setLivros(livrosDTO);
+        itemVenda.setLivros(livros);
         itemVenda.setQtdLivro(1);
+        itemVenda.getLivros();
         itemVenda.setSubTotal(livrosDTO.getPreco());
 
         item.add(itemVenda);
@@ -126,8 +127,13 @@ public class CarrinhoServices {
 
         Pedidos pedido = new Pedidos();
         pedido.setClientes(cliente);
+        pedido.setItens(new ArrayList<>());
         pedido.setTotal(calcularValorItens());
         pedido.setPedidoStatus(PedidoStatus.PROCESSANDO);
+
+        for (ItemVenda itemVenda: item){
+            itemVenda.setPedidos(pedido);
+        }
 
         Pedidos salvo =pedidosRepository.save(pedido);
 

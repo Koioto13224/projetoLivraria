@@ -3,8 +3,10 @@ package com.livraria.livraria.Services;
 import com.livraria.livraria.Entity.*;
 import com.livraria.livraria.Repository.LivrosRepository;
 import com.livraria.livraria.Repository.PedidosRepository;
+import com.livraria.livraria.dto.LivrosDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class PedidosServices {
     @Autowired
     @Lazy
     CarrinhoServices carrinhoServices;
+    @Autowired
+    ModelMapper modelMapper;
 
     public List<Pedidos> listarTodosPedidos() {
         return pedidosRepository.findAll();
@@ -49,8 +53,9 @@ public class PedidosServices {
 
         Pedidos pedidos = pedidosRepository.findById(pedidoId).orElseThrow();
         List<ItemVenda> itens = carrinhoServices.listarItensDoCarrinho();
-
+        List<LivrosDTO> livrosDTOS = new ArrayList<>();
         if (itens.isEmpty()){throw new RuntimeException("Sem item");}
+
 
         for (ItemVenda itemVenda : itens) {
             Livros livro = livrosRepository.findById(itemVenda.getLivros().getId()).orElseThrow();

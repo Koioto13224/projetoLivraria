@@ -15,19 +15,18 @@ public class Pedidos {
     @OneToOne(cascade = CascadeType.ALL)
     private Clientes clientes;
 
-//    @OneToMany(mappedBy = "pedidos",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    @Transient
-//    private List<ItemVenda> itens;
+   @OneToMany(mappedBy = "pedidos",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<ItemVenda> itens;
 
     private Double total;
     private boolean ativo;
     private PedidoStatus pedidoStatus;
     private TipoPagamento tipoPagamento;
 
-    public Pedidos(Long id, Clientes clientes, boolean ativo,Double total,PedidoStatus pedidoStatus,TipoPagamento tipoPagamento) {
+    public Pedidos(Long id, Clientes clientes, boolean ativo,Double total,List<ItemVenda> itens,PedidoStatus pedidoStatus,TipoPagamento tipoPagamento) {
         this.id = id;
         this.clientes = clientes;
-
+        this.itens =itens;
         this.total = total;
         this.pedidoStatus = pedidoStatus;
         this.tipoPagamento = tipoPagamento;
@@ -82,5 +81,13 @@ public class Pedidos {
 
     public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemVenda> itens) {
+        this.itens = itens;
     }
 }
