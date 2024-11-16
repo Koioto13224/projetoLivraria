@@ -21,7 +21,7 @@ import java.util.Optional;
 @RestController
 public class LivrosController {
 
-    private static final String caminhoImagem = "/livraria/src/main/resources/imagens/";
+    private static final String caminhoImagem = "/livraria/imagens/";
 
     LivrosServices livrosServices;
 
@@ -36,7 +36,7 @@ public class LivrosController {
             if (!imagem.isEmpty()){
                 byte[] bytes = imagem.getBytes();
                 String fileName = imagem.getOriginalFilename();
-                BufferedOutputStream stream= new BufferedOutputStream(new FileOutputStream("src/main/resources/imagens/"+fileName));
+                BufferedOutputStream stream= new BufferedOutputStream(new FileOutputStream("/livraria/imagens/"+fileName));
                 stream.write(bytes);
                 stream.close();
                 livros.setImagem(fileName);
