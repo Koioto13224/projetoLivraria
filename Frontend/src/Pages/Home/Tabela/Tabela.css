@@ -1,5 +1,5 @@
 .tabela{
-    width: 80%; /* Ocupa 80% da largura da tela */
+    width: 100%; /* Ocupa 80% da largura da tela */
     max-width: 800px; /* Define um limite máximo de largura */
     padding: 20px; /* Espaçamento interno */
     background: #6C7A89;
@@ -10,7 +10,7 @@
 
 .tabela table {
     border-collapse: collapse; 
-    width: 50%;
+    width: 100%;
   }
   
   .tabela th,
@@ -22,5 +22,9 @@
   
   .tabela th {
     background-color: #f2f2f2;
+  }
+
+  .tabela td{
+    background-color: #2276cf;
   }
   
