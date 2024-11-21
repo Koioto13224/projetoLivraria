@@ -1,0 +1,179 @@
+.tablePage {
+  max-width: var(--content-width);
+
+  margin-inline: auto;
+
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+
+  border-bottom: 2px solid var(--color-blue-light);
+}
+
+.options .right {
+  align-items: center;
+}
+
+.options .option {
+  display: block;
+
+  padding: 1rem 10px;
+
+  cursor: pointer;
+}
+
+.options .option.isActive {
+  border-bottom: 2px solid var(--color-black);
+}
+
+.table {
+  width: 100%;
+}
+
+.table .head {
+  /* display: inline-block; */
+  /* padding: 11px 50px; */
+
+
+  background-color: var(--color-blue-light);
+  border: 0;
+}
+
+.table .head th {
+  padding: 11px min(3.75vw, 72px);
+
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-grey);
+  text-transform: capitalize;
+}
+
+.table tbody td {
+  padding-block: 12px;
+  text-align: center;
+
+  border-bottom: 1px solid var(--color-grey-300);
+}
+
+.table tbody td:first-child {
+  border-left: 1px solid var(--color-grey-300);
+}
+
+.table tbody td:last-child {
+  border-right: 1px solid var(--color-grey-300);
+}
+
+.table tbody td:has(.tagged) {
+  text-align: left;
+}
+
+.table tbody .tagged {
+  display: inline-block;
+  margin-left: 72px;
+  padding: 12px 10px;
+
+  text-transform: uppercase;
+  font-size: 11px;
+  text-align: left;
+
+  background-color: var(--color-blue-light);
+
+  border-radius: 11px;
+
+}
+
+:is(.addBook, .edit, .saveButton) {
+  position: relative;
+
+  background-color: var(--color-blue);
+  padding: 11px 14px;
+
+  font-size: 1rem;
+  color: var(--color-white);
+
+  border-radius: 6px;
+
+}
+
+.addBook {
+  gap: 1rem;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.contextMenu {
+  position: absolute;
+  bottom: -1rem;
+  right: 0;
+
+  max-width: 260px;
+  padding: 27px 16px;
+
+  text-align: right;
+
+  border: 1px solid var(--color-blue-light);
+  background-color: var(--color-white);
+  border-radius: 8px;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+
+  z-index: 998;
+}
+
+.contextMenu.isActive {
+  visibility: visible;
+}
+
+.contextMenu fieldset {
+  text-align: left;
+}
+
+.contextMenu label {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  font-size: 14px;
+  color: var(--color-black);
+}
+
+.contextMenu :is(.input, textarea):where(:focus, :active) {
+  outline: 1px solid var(--color-blue);
+}
+
+.contextMenu .input {
+  width: 100%;
+}
+
+.contextMenu .input {
+  width: 100%;
+}
+
+
+.contextMenu textarea {
+  padding: 10px 8px;
+
+  font-size: var(--font-inter);
+
+  border: 1px solid var(--color-blue-light);
+  border-radius: 6px;
+
+  resize: none;
+
+
+}
+
+.contextMenu .saveButton {
+  margin-right: auto;
+}
+
+/* .contextMenu textarea:where(:focus, :active) {
+  outline: 1px solid var(--color-blue);
+} */

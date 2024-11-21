@@ -1,0 +1,16 @@
+.form {
+  padding-block: 10vw;
+  padding-inline: max(1em, 10vw);
+  max-width: 1024px;
+  margin-inline: auto;
+}
+
+.invalidFeedback {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  bottom: 0;
+  transform: translateY(100%);
+
+  color: var(--color-red);
+}

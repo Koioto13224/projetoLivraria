@@ -1,0 +1,50 @@
+section {
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+.form {
+
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.label {
+  display: block;
+} 
+
+
+.invalidFeedback {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  bottom: -0.5rem;
+  transform: translateY(100%);
+
+  color: var(--color-red);
+}
+
+.input {
+  width: 100%;
+}
+
+.submit {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  width: auto;
+  padding: 1rem;
+  margin-top: 3rem;
+
+  color: var(--color-white);
+  font-size: 1rem;
+  
+  background-color: var(--color-blue);
+  border: 1px solid var(--color-blue-light);
+
+  border-radius: 6px;
+
+}
